@@ -1,0 +1,25 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" fill="none" height="172" viewBox="0 0 190 172" width="190">
+<path d="M105.002 17H171.002V153H105.002V17Z" fill="#BDD2ED"/>
+<path d="M105.002 17H171.002V153H105.002V17Z" fill="url(#paint0_linear_413_386)"/>
+<path d="M21.002 17H87.002V153H21.002V17Z" fill="#BDD2ED"/>
+<path d="M21.002 17H87.002V153H21.002V17Z" fill="url(#paint1_linear_413_386)"/>
+<path d="M95.056 8.5H179.056V162.5H95.056V8.5Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M1 1H189V171H1V1Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M104.056 17.5179H170.056V153.516H104.056V17.5179Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M104.294 153.594L137.508 17.458L170.004 153.936M170.006 19.0001L104.574 84.514L169.322 152L170.006 19.0001Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M11.056 8.5H95.0561V162.5H11.056V8.5Z" stroke="#020405" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M20.056 17.3199H86.056V153.32H20.056V17.3199Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M20.106 17.604L85.54 84.3181L20.79 153.056" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M95.672 78.824C95.672 78.072 96.09 77.46 96.606 77.46H101.936C102.452 77.46 102.868 78.07 102.868 78.824V89.652C102.868 90.404 102.45 91.014 101.936 91.014H96.606C96.09 91.014 95.672 90.404 95.672 89.652V78.824Z" fill="white" stroke="black" stroke-linejoin="bevel" stroke-miterlimit="3.8637" stroke-width="3.6488"/>
+<path d="M98.002 90.604H100.54V109.084H98.002V90.604Z" fill="#020405" stroke="black" stroke-miterlimit="3.8637" stroke-width="0.4664"/>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_413_386" x1="138.002" x2="138.002" y1="73.0825" y2="153">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_413_386" x1="54.002" x2="54.002" y1="73.0825" y2="153">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

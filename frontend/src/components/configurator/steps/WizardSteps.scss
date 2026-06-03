@@ -1,0 +1,94 @@
+/* Wizard steps — loaded via ConfiguratorPage.scss */
+
+.studio-step-sections .form-grid.compact {
+  gap: var(--fv-space-md, 0.75rem);
+}
+
+.studio-step-sections .form-grid.compact label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3f3a32;
+}
+
+.studio-step-sections .form-grid.compact input {
+  width: 100%;
+  min-height: 2.35rem;
+  border-radius: var(--fv-radius, 5px);
+  border: 1px solid var(--fv-line, #d7cfbf);
+  background: #fff;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  box-shadow: inset 0 1px 2px rgba(28, 25, 23, 0.04);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.studio-step-sections .form-grid.compact input:focus {
+  outline: none;
+  border-color: var(--fv-accent, var(--accent));
+  box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.16);
+}
+
+.size-hint {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #6b645a;
+  background: #faf8f5;
+  border: 1px solid #efe8dd;
+  border-radius: var(--fv-radius, 5px);
+  padding: 0.38rem 0.55rem;
+}
+
+.size-warning {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+}
+
+.size-measure-link {
+  display: block;
+  width: 100%;
+  margin-top: 0.62rem;
+  padding: 0.38rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--accent-dark, var(--accent));
+  text-decoration: none;
+  border: 1px solid rgba(180, 83, 9, 0.28);
+  border-radius: var(--fv-radius, 5px);
+  background: linear-gradient(180deg, #fff 0%, #faf8f5 100%);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.size-measure-link:hover {
+  border-color: var(--accent-dark, var(--accent));
+  color: var(--accent-dark, var(--accent));
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .studio-step-sections .form-grid.compact {
+    grid-template-columns: 1fr;
+    gap: var(--fv-space-md, 0.75rem);
+  }
+
+  .studio-step-sections .form-grid.compact label {
+    min-width: 0;
+  }
+
+  .studio-step-sections .form-grid.compact input {
+    width: 100%;
+    min-height: 2.5rem;
+    font-size: 1rem; /* avoids iOS zoom on focus */
+  }
+}

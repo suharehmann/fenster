@@ -1,0 +1,125 @@
+@use 'config-section';
+
+/* Selection states — theme accent + light grey borders (matches product intro cards) */
+$sel-border: var(--fv-accent, var(--accent));
+$sel-soft: var(--fv-accent-soft, var(--accent-soft));
+
+.select-card,
+.studio-color-card,
+.studio-profile-card,
+.studio-decor-card,
+.fv-material-card,
+.product-card,
+.material-card,
+.manufacturer-card,
+.chip,
+.detail-studio-nav-item,
+.detail-studio-window-tab,
+.detail-studio-view-tab,
+.wizard-step.compact {
+  transition:
+    border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s ease,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.select-card:hover {
+  border-color: #d6d3d1;
+  transform: translateY(-1px);
+}
+
+.select-card.selected {
+  border-color: $sel-border;
+  background: transparent;
+  box-shadow: 0 0 0 1px $sel-border;
+  transform: translateY(0);
+}
+
+.select-card:active {
+  transform: scale(0.985);
+}
+
+.select-card.selected .color-chip {
+  box-shadow: 0 0 0 1px $sel-border;
+}
+
+.product-card.selected,
+.material-card.selected,
+.manufacturer-card.selected {
+  border-color: $sel-border;
+  box-shadow: 0 0 0 1px $sel-border;
+  transform: translateY(0);
+}
+
+.studio-color-card.selected,
+.studio-profile-card.selected,
+.studio-decor-card.selected,
+.fv-material-card.selected {
+  border-color: $sel-border;
+  background: transparent;
+  box-shadow: 0 0 0 1px $sel-border;
+}
+
+.studio-tab {
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.detail-studio-progress-seg {
+  transition: background-color 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select-card,
+  .studio-color-card,
+  .studio-profile-card,
+  .studio-decor-card,
+  .fv-material-card,
+  .product-card,
+  .material-card,
+  .manufacturer-card,
+  .chip,
+  .card-check,
+  .detail-studio-nav-item,
+  .detail-studio-nav-num,
+  .detail-studio-window-tab,
+  .detail-studio-view-tab,
+  .wizard-step.compact,
+  .color-chip,
+  .studio-tab,
+  .detail-studio-progress-seg,
+  .detail-studio-progress-fill,
+  .detail-studio-progress-window-fill {
+    transition: none;
+  }
+
+  .select-card.selected .card-check,
+  .studio-color-card.selected .card-check,
+  .studio-profile-card.selected .card-check,
+  .studio-decor-card.selected .card-check,
+  .fv-material-card.selected .card-check {
+    transform: none;
+  }
+}
+
+.card-metric {
+  justify-self: start;
+  background: #3a6d56;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.22rem 0.46rem;
+  border-radius: var(--fv-radius, 5px);
+}
+
+.card-footer {
+  margin: 0 -0.55rem -0.55rem;
+  padding: 0.45rem 0.55rem;
+  text-align: center;
+  color: #fff;
+  background: #6b5e52;
+  font-weight: 700;
+}
+

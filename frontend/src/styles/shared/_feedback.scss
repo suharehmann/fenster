@@ -1,0 +1,16 @@
+.success {
+  color: #166534;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.wizard-callout {
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 0.8rem;
+  background: var(--panel-strong);
+  color: var(--muted);
+  font-size: 0.92rem;
+}

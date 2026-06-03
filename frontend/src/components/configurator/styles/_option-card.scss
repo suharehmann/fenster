@@ -1,0 +1,78 @@
+/* Option tiles — colocated with OptionCard.jsx */
+.selection-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.select-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  text-align: left;
+  padding: 0.7rem 2.15rem 0.7rem 0.75rem;
+  display: grid;
+  gap: 0.35rem;
+  cursor: pointer;
+  overflow: hidden;
+  min-height: 3.1rem;
+  align-content: center;
+}
+
+.select-card:has(img) {
+  padding: 0.55rem;
+  min-height: 0;
+  align-content: start;
+}
+
+.select-card img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 5.75rem;
+  aspect-ratio: 260 / 220;
+  object-fit: contain;
+  object-position: center;
+  border-radius: var(--fv-radius, 5px);
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.select-card:has(.color-chip) {
+  padding: 0.55rem 2rem 0.55rem 0.55rem;
+}
+
+.select-card strong {
+  font-size: 0.84rem;
+  line-height: 1.28;
+  text-align: left;
+  padding-right: 0.15rem;
+}
+
+.select-card span:not(.card-badge):not(.card-check) {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+.color-chip {
+  width: 100%;
+  height: 34px;
+  border-radius: var(--fv-radius, 5px);
+  border: 1px solid var(--line);
+  transition: box-shadow 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #8f2a2a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: var(--fv-radius, 5px);
+  z-index: 2;
+}

@@ -1,0 +1,95 @@
+/* Door / shutter form inside fv-main (studio chrome matches windows) */
+.fv-product-config {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.fv-product-config .section-block {
+  margin: 0;
+}
+
+.fv-product-config .section-head h3 {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.fv-product-config .details-link {
+  display: none;
+}
+
+.fv-product-fields {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fv-product-fields--dims {
+  gap: 0.75rem;
+}
+
+.fv-product-field {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  > span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    .anticon {
+      color: var(--fv-accent, #b45309);
+      font-size: 0.85rem;
+    }
+  }
+
+  .ant-input,
+  .ant-input-number,
+  .ant-select {
+    width: 100%;
+  }
+
+  .ant-input-number.fv-product-input-num {
+    width: 100%;
+  }
+}
+
+.fv-product-field-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.fv-product-type-card {
+  min-height: 4.5rem;
+  align-content: start;
+
+  strong {
+    font-size: 0.88rem;
+  }
+
+  span:not(.card-badge):not(.card-check) {
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+}
+
+@media (max-width: 768px) {
+  .fv-product-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .fv-product-config .selection-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

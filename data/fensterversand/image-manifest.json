@@ -1,0 +1,34 @@
+{
+  "product": {
+    "window": "/assets/configurator/product-fenster.png",
+    "door": "/assets/configurator/product-door.png",
+    "shutter": "/assets/configurator/product-shutter.png"
+  },
+  "material": {
+    "Kunststoff": "/assets/configurator/material-kunststoff.png",
+    "Kunststoff-Aluminium": "/assets/configurator/material-kunststoff-alu.png",
+    "Holz": "/assets/configurator/material-holz.png",
+    "Holz-Aluminium": "/assets/configurator/material-holz-alu.png",
+    "Aluminium": "/assets/configurator/material-aluminium.png"
+  },
+  "windowType": {
+    "Einteilig": "/assets/configurator/window-default.png",
+    "Einteilig bodentief": "/assets/configurator/window-default.png",
+    "Zweiteilig mit Stulp": "/assets/configurator/window-default.png",
+    "Zweiteilig mit Pfosten": "/assets/configurator/window-default.png",
+    "Dreiteilig": "/assets/configurator/window-default.png",
+    "Dreiteilig bodentief": "/assets/configurator/window-default.png",
+    "Vierteilig": "/assets/configurator/window-default.png",
+    "Festverglasung rechteckig": "/assets/configurator/window-default.png",
+    "Festverglasung bodentief": "/assets/configurator/window-default.png",
+    "Balkontuer einteilig": "/assets/configurator/window-balkontuer-einteilig.png",
+    "Balkontuer zweiteilig": "/assets/configurator/window-balkontuer-zweiteilig.png",
+    "Parallel-Schiebe-Kipp": "/assets/configurator/window-psk.png",
+    "Hebe-Schiebetuer": "/assets/configurator/window-hebeschiebe.png",
+    "Rundbogen": "/assets/configurator/window-default.png",
+    "Segmentbogen": "/assets/configurator/window-default.png",
+    "Trapez": "/assets/configurator/window-default.png",
+    "Dreieck": "/assets/configurator/window-default.png",
+    "Sondertyp": "/assets/configurator/window-sondertyp.png"
+  }
+}

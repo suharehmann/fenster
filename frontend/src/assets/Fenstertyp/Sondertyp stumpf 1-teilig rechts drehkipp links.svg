@@ -1,0 +1,15 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" fill="none" height="188" viewBox="0 0 102 188" width="102">
+<path d="M18 16H32.5L84 68.5V170H18V16Z" fill="#BDD2ED"/>
+<path d="M18 16H32.5L84 68.5V170H18V16Z" fill="url(#paint0_linear_430_12)"/>
+<path d="M1 1L37.4 1.008L101 59V187H1V1ZM8.99805 9L35.234 8.99799L92.998 63V179H8.99805V9Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M17.998 15.9999L32.458 15.9919L83.998 67.9999V170H17.998V15.9999Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M83.734 170.762L50.598 35.17L18.048 170.418M18.05 18.282L81.482 106.996L18.734 169.734L18.05 18.282Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M85.458 101.232C85.458 100.478 85.876 99.8679 86.392 99.8679H91.722C92.238 99.8679 92.654 100.478 92.654 101.232V112.06C92.654 112.812 92.236 113.422 91.722 113.422H86.392C85.876 113.422 85.458 112.812 85.458 112.06V101.232Z" fill="white" stroke="black" stroke-linejoin="bevel" stroke-miterlimit="3.8637" stroke-width="3.6488"/>
+<path d="M87.788 113.012H90.326V131.492H87.788V113.012Z" fill="#020405" stroke="black" stroke-miterlimit="3.8637" stroke-width="0.4664"/>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_430_12" x1="51" x2="51" y1="79.5052" y2="170">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

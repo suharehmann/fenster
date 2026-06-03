@@ -1,0 +1,25 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" fill="none" height="172" viewBox="0 0 190 172" width="190">
+<path d="M84.998 17H18.998V153H84.998V17Z" fill="#BDD2ED"/>
+<path d="M84.998 17H18.998V153H84.998V17Z" fill="url(#paint0_linear_413_437)"/>
+<path d="M168.998 17H102.998V153H168.998V17Z" fill="#BDD2ED"/>
+<path d="M168.998 17H102.998V153H168.998V17Z" fill="url(#paint1_linear_413_437)"/>
+<path d="M94.944 8.5H10.944V162.5H94.944V8.5Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M189 1H1V171H189V1Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M85.944 17.5179H19.944V153.516H85.944V17.5179Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M85.706 153.594L52.492 17.458L19.996 153.936M19.994 19.0001L85.426 84.514L20.678 152L19.994 19.0001Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M178.944 8.5H94.9439V162.5H178.944V8.5Z" stroke="#020405" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M169.944 17.3199H103.944V153.32H169.944V17.3199Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M169.894 17.604L104.46 84.3181L169.21 153.056" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M94.328 78.824C94.328 78.072 93.91 77.46 93.394 77.46H88.064C87.548 77.46 87.132 78.07 87.132 78.824V89.652C87.132 90.404 87.55 91.014 88.064 91.014H93.394C93.91 91.014 94.328 90.404 94.328 89.652V78.824Z" fill="white" stroke="black" stroke-linejoin="bevel" stroke-miterlimit="3.8637" stroke-width="3.6488"/>
+<path d="M91.998 90.604H89.46V109.084H91.998V90.604Z" fill="#020405" stroke="black" stroke-miterlimit="3.8637" stroke-width="0.4664"/>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_413_437" x1="51.998" x2="51.998" y1="73.0825" y2="153">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_413_437" x1="135.998" x2="135.998" y1="73.0825" y2="153">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

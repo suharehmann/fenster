@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Kunststoff Mahagoni, zweiteilig, links fest rechts fest">
+  <rect width="360" height="360" fill="#f8fafc"/>
+  <g transform="translate(30 30)">
+    <rect x="0" y="0" width="300" height="300" rx="4" fill="#5c2e1a" stroke="#3f1f12" stroke-width="6"/>
+    <g>
+      <rect x="14" y="14" width="130" height="272" rx="2" fill="#ffffff" stroke="#5c2e1a" stroke-width="10"/>
+      <rect x="30" y="30" width="98" height="240" fill="#dbeafe" fill-opacity="0.5"/>
+    </g>
+    <g>
+      <rect x="156" y="14" width="130" height="272" rx="2" fill="#ffffff" stroke="#5c2e1a" stroke-width="10"/>
+      <rect x="172" y="30" width="98" height="240" fill="#dbeafe" fill-opacity="0.5"/>
+    </g>
+  </g>
+</svg>

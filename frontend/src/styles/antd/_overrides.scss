@@ -1,0 +1,58 @@
+.ant-btn {
+  border-radius: var(--studio-r, 5px) !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding-inline: 0.9rem !important;
+  height: auto;
+  min-height: 2.25rem;
+}
+
+.ant-btn-lg {
+  min-height: 2.5rem;
+  font-size: 0.92rem;
+}
+
+.ant-btn-sm {
+  min-height: 1.85rem;
+  font-size: 0.82rem;
+  padding-inline: 0.65rem !important;
+}
+
+.ant-btn-primary {
+  background: var(--accent);
+  box-shadow: 0 6px 16px rgba(179, 93, 44, 0.18);
+
+  &:not(:disabled):hover {
+    background: var(--accent-dark);
+  }
+}
+
+.ant-btn-default {
+  border-color: var(--line);
+}
+
+@media (max-width: 768px) {
+  .ant-btn {
+    min-height: 2rem;
+    font-size: 0.82rem;
+    padding-inline: 0.75rem !important;
+  }
+
+  .ant-btn-lg {
+    min-height: 2.15rem;
+    font-size: 0.85rem;
+  }
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-select-selector,
+.ant-picker {
+  border-radius: var(--studio-r, 5px) !important;
+}
+
+.ant-form-item-label > label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}

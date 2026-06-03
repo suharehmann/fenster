@@ -1,0 +1,21 @@
+{
+  "source": "https://www.fensterversand.com/?cid=25&t=fenster-kunststoff",
+  "downloaded": {
+    "product-fenster.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/kunststofffenster.png",
+    "product-door.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/haustuer-kunststoff.png",
+    "product-shutter.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/aufsatzrollladen.png",
+    "material-kunststoff.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/kunststofffenster.png",
+    "material-kunststoff-alu.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/kunststoff-aluminium-fenster.png",
+    "material-holz.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/holzfenster.png",
+    "material-holz-alu.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/holz-alu-fenster.png",
+    "material-aluminium.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/alufenster.png",
+    "window-default.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/kunststofffenster.png",
+    "window-balkontuer-einteilig.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontueren-kunststoff_old.png",
+    "window-balkontuer-zweiteilig.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontuer-kunststoff-alu.png",
+    "window-psk.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/psk-tuer.png",
+    "window-hebeschiebe.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/hebeschiebetuer.png",
+    "window-sondertyp.png": "https://www.fensterversand.com/fileadmin/images/de/flyout/schiebefenster.png"
+  },
+  "errors": {},
+  "crawled_url_count": 0
+}

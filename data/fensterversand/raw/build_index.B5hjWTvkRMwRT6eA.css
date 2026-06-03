@@ -1,0 +1,1 @@
+#skip-buttons-container{height:0;padding:0;text-align:center;overflow:hidden}#skip-buttons-container:has(:focus-visible){height:auto;padding:16px;position:relative}#skip-buttons-container:has(:focus-visible)+#static-header .header-container{top:auto}#main:focus-visible,#main-content:focus-visible,#content-container:focus-visible{outline:none}

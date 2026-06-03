@@ -1,0 +1,26 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" fill="none" height="172" viewBox="0 0 202 172" width="202">
+<path d="M116 17H182V153H116V17Z" fill="#BDD2ED"/>
+<path d="M116 17H182V153H116V17Z" fill="url(#paint0_linear_413_412)"/>
+<path d="M21 17H87V153H21V17Z" fill="#BDD2ED"/>
+<path d="M21 17H87V153H21V17Z" fill="url(#paint1_linear_413_412)"/>
+<path d="M1 1H201V171H1V1Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M11.266 8.90198H95.266V162.902H11.266V8.90198Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M20.266 17.72H86.266V153.722H20.266V17.72Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M20.5 19.5L85.748 83.816L21 152L20.5 19.5ZM86 153L52.5 17L21 153.5L86 153ZM106.734 9H190.734V162H106.734V9Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M115.734 17.72H181.734V153.722H115.734V17.72Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M115.974 153.798L149.186 17.662L181.684 154.14M181.5 19.5L116.252 84.718L181 152L181.5 19.5Z" stroke="black" stroke-miterlimit="3.8637" stroke-width="2"/>
+<path d="M87.09 79.892C87.09 79.14 87.508 78.528 88.024 78.528H93.354C93.87 78.528 94.288 79.138 94.288 79.892V90.72C94.288 91.472 93.87 92.082 93.354 92.082H88.024C87.508 92.082 87.09 91.472 87.09 90.72V79.892Z" fill="white" stroke="black" stroke-linejoin="bevel" stroke-miterlimit="3.8637" stroke-width="3.6488"/>
+<path d="M89.42 91.672H91.96V110.152H89.42V91.672Z" fill="#020405" stroke="black" stroke-miterlimit="3.8637" stroke-width="0.4664"/>
+<path d="M107.544 79.892C107.544 79.14 107.962 78.528 108.478 78.528H113.808C114.324 78.528 114.742 79.138 114.742 79.892V90.72C114.742 91.472 114.324 92.082 113.808 92.082H108.478C107.962 92.082 107.544 91.472 107.544 90.72V79.892Z" fill="white" stroke="black" stroke-linejoin="bevel" stroke-miterlimit="3.8637" stroke-width="3.6488"/>
+<path d="M109.872 91.672H112.412V110.152H109.872V91.672Z" fill="#020405" stroke="black" stroke-miterlimit="3.8637" stroke-width="0.4664"/>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_413_412" x1="149" x2="149" y1="73.0825" y2="153">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_413_412" x1="54" x2="54" y1="73.0825" y2="153">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

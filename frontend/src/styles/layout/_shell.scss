@@ -1,0 +1,188 @@
+.app-shell {
+  padding-top: var(--nav-height, 3.5rem);
+  box-sizing: border-box;
+}
+
+.content-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.2rem 1.2rem 3rem;
+}
+
+.content-container:has(.page.home) {
+  max-width: 1480px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.content-container:has(.page--content) {
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--fv-page-y) var(--fv-page-x) var(--fv-page-bottom);
+  box-sizing: border-box;
+}
+
+/* Intro configurator — centered column with side margins */
+.content-container:has(.wizard-shell):not(:has(.detail-phase-page)) {
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--fv-page-y) var(--fv-page-x) var(--fv-page-bottom);
+  box-sizing: border-box;
+}
+
+/* Detail studio — full width */
+.content-container:has(.detail-phase-page) {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.content-container:has(.wc-page) {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: var(--fv-page-y) var(--fv-page-x) var(--fv-space-lg);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: calc(100dvh - var(--nav-height, 3.5rem));
+  overflow: hidden;
+}
+
+.app-shell:has(.wizard-shell):not(:has(.wizard-shell--intro-step)) {
+  min-height: 100vh;
+}
+
+.app-shell:has(.wc-page) {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Detail studio: fill viewport below nav */
+.app-shell:has(.detail-phase-page) {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell:has(.detail-phase-page) > .content-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell:has(.wc-page) > .content-container {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.detail-phase-page {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-phase-page .detail-studio.fv-studio {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-phase-page .fv-studio-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: none;
+}
+
+@media (min-width: 1101px) {
+  .app-shell:has(.detail-phase-page) {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .app-shell:has(.detail-phase-page) > .content-container,
+  .detail-phase-page,
+  .detail-phase-page .detail-studio.fv-studio {
+    overflow: hidden;
+  }
+}
+
+.content-container:has(.detail-phase-page) .wizard-layout,
+.content-container:has(.detail-phase-page) .wizard-panel {
+  max-width: none;
+}
+
+html:has(.wc-page),
+body:has(.wc-page) {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Mobile: allow vertical scroll on configurator (desktop studio stays viewport-locked) */
+@media (max-width: 880px) {
+  html:has(.wc-page),
+  body:has(.wc-page) {
+    overflow-x: clip;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100%;
+  }
+
+  .app-shell:has(.wc-page) {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .content-container:has(.wc-page) {
+    overflow: visible;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  html:has(.wizard-shell):not(:has(.wizard-shell--intro-step)),
+  body:has(.wizard-shell):not(:has(.wizard-shell--intro-step)) {
+    overflow-x: clip;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100%;
+  }
+
+  .app-shell:has(.wizard-shell):not(:has(.wizard-shell--intro-step)),
+  .app-shell:has(.detail-phase-page) {
+    height: auto;
+    min-height: 100dvh;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .content-container:has(.detail-phase-page),
+  .content-container:has(.wizard-shell):not(:has(.detail-phase-page)):not(:has(.wizard-shell--intro-step)) {
+    overflow-x: clip;
+    overflow-y: visible;
+    flex: none;
+    min-height: auto;
+  }
+
+  .detail-phase-page,
+  .detail-phase-page .detail-studio.fv-studio,
+  .detail-phase-page .fv-studio-grid {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    flex: none;
+  }
+}

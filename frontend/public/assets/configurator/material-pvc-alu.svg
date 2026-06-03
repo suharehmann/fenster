@@ -1,0 +1,7 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 220'>
+  <rect width='300' height='220' fill='#f8fafc'/>
+  <rect x='54' y='34' width='192' height='152' fill='#d1d5db' stroke='#374151' stroke-width='12'/>
+  <rect x='80' y='60' width='64' height='100' fill='#f8fafc'/>
+  <rect x='156' y='60' width='64' height='100' fill='#9ca3af'/>
+  <text x='150' y='208' text-anchor='middle' font-family='Arial' font-size='20' fill='#1f2937'>Kunststoff-Alu</text>
+</svg>

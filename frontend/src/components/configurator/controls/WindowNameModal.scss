@@ -1,0 +1,23 @@
+.fv-name-modal {
+  .ant-modal-body {
+    padding-top: 0.5rem;
+  }
+}
+
+.fv-name-modal-lead {
+  margin: 0 0 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--muted);
+
+  strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+}
+
+.fv-name-modal-hint {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}

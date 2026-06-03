@@ -1,0 +1,40 @@
+.page {
+  padding: 1.6rem 0 2.4rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.hero-card,
+.service-card,
+.preview-box,
+.company-box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+h1 {
+  margin: 0.4rem 0 0.6rem;
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+  line-height: 1.05;
+}
+
+h2,
+h3 {
+  font-family: var(--font-sans);
+}

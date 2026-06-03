@@ -1,0 +1,107 @@
+.wizard-callout {
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 0.8rem;
+  background: #fff;
+  color: var(--muted);
+}
+
+.quantity-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.quantity-picker {
+  display: grid;
+  grid-template-columns: 46px 1fr 46px;
+  gap: 0.6rem;
+  align-items: center;
+  max-width: 360px;
+}
+
+.qty-btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  height: 46px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.qty-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.quantity-picker input {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.quantity-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+
+
+.wizard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+@media (min-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .configurator-layout {
+    grid-template-columns: minmax(240px, 300px) 1fr 320px;
+  }
+
+  .wizard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-content {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-box {
+    position: sticky;
+    top: 90px;
+    height: fit-content;
+  }
+}
+
+@media (max-width: 899px) and (min-width: 769px) {
+  .wizard-shell:not(.detail-phase-page) .selection-grid,
+  .selection-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-phase-page .fv-studio .studio-embedded .selection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .wizard-content {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-actions {
+    justify-content: space-between;
+  }
+
+  .wizard-step {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}

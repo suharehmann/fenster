@@ -1,0 +1,288 @@
+/* Intro wizard — enhanced step progress (all intro steps) */
+
+.wizard-shell:not(.detail-phase-page) .wizard-nav--step-progress {
+  width: 100%;
+  padding: 0 0 20px;
+  border-bottom: 1px solid rgb(0 0 0 / 0.08);
+  background: transparent;
+  box-shadow: none;
+}
+
+.wizard-step-progress__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 18px;
+  padding: 0;
+  text-align: center;
+}
+
+.wizard-step-progress__kicker {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #888780;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.wizard-step-progress__kicker-num {
+  color: #c1440e;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.wizard-step-progress__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #1a1a1a;
+}
+
+.wizard-step-progress__trail {
+  --wizard-step-dot: 32px;
+  --wizard-step-track: 2px;
+  --wizard-step-track-idle: #d4d0c8;
+  --wizard-step-done: #d6dfd0;
+  --wizard-step-done-strong: #4b6043;
+  --wizard-step-done-soft: #e4ebe3;
+  --wizard-step-done-border: #d6dfd0;
+  --wizard-step-upcoming-border: #c9c5bd;
+  --wizard-step-upcoming-bg: #fff;
+  --wizard-step-upcoming-text: #6b6860;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 0;
+
+  /* Single continuous track between first and last step centers */
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--wizard-step-dot) / 2);
+    left: calc(50% / var(--wizard-step-count, 4));
+    right: calc(50% / var(--wizard-step-count, 4));
+    height: var(--wizard-step-track);
+    transform: translateY(-50%);
+    background: var(--wizard-step-track-idle);
+    border-radius: 999px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--wizard-step-dot) / 2);
+    left: calc(50% / var(--wizard-step-count, 4));
+    width: calc(
+      (100% - (100% / var(--wizard-step-count, 4))) * var(--wizard-step-current, 0) /
+        max(var(--wizard-step-count, 4) - 1, 1)
+    );
+    height: var(--wizard-step-track);
+    transform: translateY(-50%);
+    background: var(--wizard-step-done);
+    border-radius: 999px;
+    z-index: 1;
+    pointer-events: none;
+    transition: width 0.25s ease;
+  }
+}
+
+.wizard-step-progress__item {
+  flex: 1 1 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  z-index: 2;
+}
+
+.wizard-step-progress__step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: var(--wizard-step-dot) auto;
+  justify-items: center;
+  align-content: start;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 1;
+  cursor: default;
+  font: inherit;
+  color: inherit;
+  transition: opacity 0.2s ease;
+
+  &:not(:disabled) {
+    cursor: pointer;
+
+    &:hover .wizard-step-progress__dot {
+      transform: scale(1.04);
+    }
+
+    .wizard-step-progress__item:not(.is-done) &:hover .wizard-step-progress__label {
+      color: #c1440e;
+    }
+
+    .wizard-step-progress__item.is-done &:hover .wizard-step-progress__label {
+      color: var(--wizard-step-done-strong, #4b6043);
+    }
+
+    .wizard-step-progress__item.is-done &:hover .wizard-step-progress__dot {
+      border-color: var(--wizard-step-done-border, #d6dfd0);
+      background: var(--wizard-step-done-soft, #e4ebe3);
+      box-shadow: none;
+
+      .wizard-step-progress__check {
+        stroke: var(--wizard-step-done-strong, #4b6043);
+      }
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgb(193 68 14 / 0.45);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+}
+
+.wizard-step-progress__dot {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--wizard-step-dot);
+  height: var(--wizard-step-dot);
+  min-width: var(--wizard-step-dot);
+  min-height: var(--wizard-step-dot);
+  border-radius: 999px;
+  box-sizing: border-box;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  border: 2px solid var(--wizard-step-upcoming-border);
+  background: var(--wizard-step-upcoming-bg);
+  color: var(--wizard-step-upcoming-text);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.wizard-step-progress__check {
+  width: 12px;
+  height: 12px;
+}
+
+.wizard-step-progress__label {
+  display: block;
+  max-width: 5.75rem;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--wizard-step-upcoming-text);
+  transition: color 0.2s ease;
+}
+
+.wizard-step-progress__item.is-upcoming {
+  .wizard-step-progress__dot {
+    border-color: var(--wizard-step-upcoming-border);
+    background: var(--wizard-step-upcoming-bg);
+    color: var(--wizard-step-upcoming-text);
+  }
+
+  .wizard-step-progress__label {
+    color: var(--wizard-step-upcoming-text);
+  }
+}
+
+.wizard-step-progress__item.is-active {
+  .wizard-step-progress__dot {
+    border-color: #c1440e;
+    background: #c1440e;
+    color: #fff;
+    box-shadow: 0 2px 8px rgb(193 68 14 / 0.28);
+  }
+
+  .wizard-step-progress__label {
+    font-weight: 600;
+    color: #c1440e;
+  }
+}
+
+.wizard-step-progress__item.is-done {
+  .wizard-step-progress__dot {
+    border-color: var(--wizard-step-done-border);
+    background: var(--wizard-step-done);
+    color: var(--wizard-step-done-strong);
+    box-shadow: none;
+  }
+
+  .wizard-step-progress__check {
+    stroke: var(--wizard-step-done-strong);
+  }
+
+  .wizard-step-progress__label {
+    font-weight: 500;
+    color: var(--wizard-step-done-strong);
+  }
+}
+
+@media (max-width: 768px) {
+  .wizard-shell:not(.detail-phase-page) .wizard-nav--step-progress {
+    padding: 0 0 14px;
+  }
+
+  .wizard-step-progress__header {
+    margin-bottom: 14px;
+  }
+
+  .wizard-step-progress__title {
+    font-size: 16px;
+  }
+
+  .wizard-step-progress__trail {
+    --wizard-step-dot: 28px;
+  }
+
+  .wizard-step-progress__label {
+    font-size: 10px;
+    max-width: 4.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wizard-step-progress__kicker {
+    font-size: 11px;
+  }
+
+  .wizard-step-progress__trail {
+    --wizard-step-dot: 26px;
+  }
+
+  .wizard-step-progress__label {
+    font-size: 9px;
+    max-width: 4.25rem;
+    letter-spacing: -0.01em;
+  }
+}

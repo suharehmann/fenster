@@ -1,0 +1,185 @@
+{
+  "source": "https://www.fensterversand.com/?cid=25&t=fenster-kunststoff",
+  "assets": [
+    {
+      "url": "https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/localization/messages_de.min.js",
+      "file": "raw/npm_jquery-validation_1.19.3_dist_localization_messages_de.min.js"
+    },
+    {
+      "url": "https://fastly.jsdelivr.net/npm/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css",
+      "file": "raw/npm_bootstrap-select_1.12.4_dist_css_bootstrap-select.min.css"
+    },
+    {
+      "url": "https://fastly.jsdelivr.net/npm/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js",
+      "file": "raw/npm_bootstrap-select_1.12.4_dist_js_bootstrap-select.min.js"
+    },
+    {
+      "url": "https://fastly.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js",
+      "file": "raw/npm_jquery-validation_1.19.3_dist_jquery.validate.min.js"
+    },
+    {
+      "url": "https://fastly.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js",
+      "file": "raw/npm_jquery_2.2.4_dist_jquery.min.js"
+    },
+    {
+      "url": "https://fastly.jsdelivr.net/npm/webui-popover@1.2.18/dist/jquery.webui-popover.min.css",
+      "file": "raw/npm_webui-popover_1.2.18_dist_jquery.webui-popover.min.css"
+    },
+    {
+      "url": "https://fastly.jsdelivr.net/npm/webui-popover@1.2.18/dist/jquery.webui-popover.min.js",
+      "file": "raw/npm_webui-popover_1.2.18_dist_jquery.webui-popover.min.js"
+    },
+    {
+      "url": "https://nzgiyk8x1q.kameleoon.io/engine.js",
+      "file": "raw/engine.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/AccountDeletedModal.BHlMFVF613ZvHQtw.css",
+      "file": "raw/build_AccountDeletedModal.BHlMFVF613ZvHQtw.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/BaseModal.U4_PN9TLK6ElFVKu.css",
+      "file": "raw/build_BaseModal.U4_PN9TLK6ElFVKu.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/Popover.DvQS_4N6pnR_6BIV.css",
+      "file": "raw/build_Popover.DvQS_4N6pnR_6BIV.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/bootstrap.CGYDAeBArLk8SDr4.js",
+      "file": "raw/build_bootstrap.CGYDAeBArLk8SDr4.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/bootstrap.Z6lyf7nr_RXes5F_.css",
+      "file": "raw/build_bootstrap.Z6lyf7nr_RXes5F_.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/configurator.D9C64pdQPXn7ZTgp.js",
+      "file": "raw/build_configurator.D9C64pdQPXn7ZTgp.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/configurator.Ddaiu3AiQNyjBDih.css",
+      "file": "raw/build_configurator.Ddaiu3AiQNyjBDih.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/consent-manager.-GSvSe23HErnNK0u.js",
+      "file": "raw/build_consent-manager.-GSvSe23HErnNK0u.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/create-swiper-options.B8KArAW0vCMaQnH4.css",
+      "file": "raw/build_create-swiper-options.B8KArAW0vCMaQnH4.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/error-logger.CFOvKTsV-IFoZF2X.js",
+      "file": "raw/build_error-logger.CFOvKTsV-IFoZF2X.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/floating-action-buttons.C1ib9LAyHZXw64JL.js",
+      "file": "raw/build_floating-action-buttons.C1ib9LAyHZXw64JL.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/fv-shops.D5ukZ8PrMepr2Ivv.js",
+      "file": "raw/build_fv-shops.D5ukZ8PrMepr2Ivv.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/fv-shops.yp5-_wYPbDjdkdmF.css",
+      "file": "raw/build_fv-shops.yp5-_wYPbDjdkdmF.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/hero-homepage.CrVLXpwy4DYtaegb.css",
+      "file": "raw/build_hero-homepage.CrVLXpwy4DYtaegb.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/index.B5hjWTvkRMwRT6eA.css",
+      "file": "raw/build_index.B5hjWTvkRMwRT6eA.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/index.C8XJk62ipsiLz4aU.css",
+      "file": "raw/build_index.C8XJk62ipsiLz4aU.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/index.LeKfFNDS3sJi-3tq.css",
+      "file": "raw/build_index.LeKfFNDS3sJi-3tq.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/main.DugIAvp7NrgCgOsm.js",
+      "file": "raw/build_main.DugIAvp7NrgCgOsm.js"
+    },
+    {
+      "url": "https://www.fensterversand.com/build/specialwindowtypes.CBYyGLXfuoyqa9OX.css",
+      "file": "raw/build_specialwindowtypes.CBYyGLXfuoyqa9OX.css"
+    },
+    {
+      "url": "https://www.fensterversand.com/fileadmin/assets/fonts/opensans/opensans-700-600-400-300.css",
+      "file": "raw/fileadmin_assets_fonts_opensans_opensans-700-600-400-300.css"
+    }
+  ],
+  "image_urls": [
+    "https://images.provenexpert.com/82/f6/051756cc7173df0019503608ff4a/fensterversand_full_1741187646.jpg",
+    "https://www.fensterversand.com/fileadmin/assets/svg/sprite.svg",
+    "https://www.fensterversand.com/fileadmin/assets/svg/trust-badges-sprite.svg",
+    "https://www.fensterversand.com/fileadmin/images/de/carports/carport-anbau-teaser.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/carports/carport-freistehend-teaser.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/carports/carport-mit-abstellraum-navi.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/carports/carport-mit-abstellraum-teaser.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/carports/carports-homepage-teaser.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/alu-haustuer.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/alu-stahl-haustuer.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/alufenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/aufsatzrollladen.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontuer-aluminium_old.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontuer-holz-aluminium_old.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontuer-holz_old.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontuer-kunststoff-alu.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontuer-kunststoff-alu_old.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/balkontueren-kunststoff_old.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/doppeltor.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/einzeltor.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/faltschiebetuer.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/garagentore.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/haustuer-holz.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/haustuer-kunststoff.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/hebeschiebetuer.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/holz-alu-fenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/holz-dachfenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/holzfenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/kunststoff-aluminium-fenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/kunststofffenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/nebeneingangstuer-holz.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/nebeneingangstuer-stahl.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/psk-tuer.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/rolltore.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/schiebefenster.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/schiebetor.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/sektionaltore.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/smart-slide-schiebetuer.png",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/teaser-balkontuer-alu.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/teaser-fensterbaenke.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/teaser-schueco-haustueren.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/teaser-sektionaltor.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/teaser-smart-slide-schiebetuer.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/flyout/zaun.png",
+    "https://www.fensterversand.com/fileadmin/images/de/nebeneingangstuer/Megadropdown-teaser-NET.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/startseite/aussenrollos.png",
+    "https://www.fensterversand.com/fileadmin/images/de/startseite/markisen.png",
+    "https://www.fensterversand.com/fileadmin/images/de/startseite/pergolen.png",
+    "https://www.fensterversand.com/fileadmin/images/de/startseite/raffstore.png",
+    "https://www.fensterversand.com/fileadmin/images/de/startseite/solar-rollladen.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/startseite/vorbaurollladen-eckig.png",
+    "https://www.fensterversand.com/fileadmin/images/de/tore/doppeltor-navi.png",
+    "https://www.fensterversand.com/fileadmin/images/de/videos/teaser-video-bestellung.jpg",
+    "https://www.fensterversand.com/fileadmin/images/de/videos/video-anleitung-aufmessen-altbau.jpg",
+    "https://www.fensterversand.com/fileadmin/images/logos/fenster-com-112x112.jpg",
+    "https://www.fensterversand.com/fileadmin/images/logos/fensterversand-slim.svg",
+    "https://www.fensterversand.com/uploads/tx_templavoilaplus/anleitungsvideo-fenster-einstellen-justieren.jpg",
+    "https://www.fensterversand.com/uploads/tx_templavoilaplus/herstellungsvideo-kunststoff-alu-fenster.jpg"
+  ],
+  "opening_codes": [
+    "F",
+    "K",
+    "S"
+  ],
+  "color_labels": [
+    "grau"
+  ]
+}
