@@ -37,7 +37,6 @@ import {
   PROFILE_SYSTEMS,
   WINDOW_TYPES
 } from '@/utils/defaults';
-import { computeTotal } from '@/lib/configurator/pricing';
 import { ensureWindowAtIndex, removeWindowAtIndex } from '@/lib/configurator/quantity';
 import {
   buildPreviewWindow,
@@ -626,13 +625,7 @@ function PreviewCard({
   );
 }
 
-const CONFIGURATOR_STEP_COUNT = 7;
-
-function DetailsCard({ rows, unitPrice, currentStepIndex }) {
-  const currentStepNumber = Math.min(CONFIGURATOR_STEP_COUNT, Math.max(1, currentStepIndex + 1));
-  const progressPercent = (currentStepNumber / CONFIGURATOR_STEP_COUNT) * 100;
-  const formattedPrice = `${Number(unitPrice).toLocaleString('de-DE')} €`;
-
+function DetailsCard({ rows }) {
   return (
     <div className="fv-details-card">
       <h3>Details (aktuell)</h3>
@@ -644,16 +637,6 @@ function DetailsCard({ rows, unitPrice, currentStepIndex }) {
           </li>
         ))}
       </ul>
-      <div className="fv-price-card">
-        <span className="fv-price-card__label">Geschätzte Gesamtkosten</span>
-        <strong className="fv-price-card__amount">{formattedPrice}</strong>
-        <div className="fv-price-card__track" aria-hidden="true">
-          <span className="fv-price-card__fill" style={{ width: `${progressPercent}%` }} />
-        </div>
-        <span className="fv-price-card__step">
-          Schritt {currentStepNumber} von {CONFIGURATOR_STEP_COUNT}
-        </span>
-      </div>
     </div>
   );
 }
@@ -713,8 +696,6 @@ export default function DetailConfiguratorStudio({
   ]
     .filter(Boolean)
     .join(', ');
-
-  const projectPrice = computeTotal(state);
 
   const beforeShapeStep = isBeforeShapeStep(detailStepId);
   const buildSubStep = detailStepId === 'build' ? subStep : 99;
@@ -792,7 +773,6 @@ export default function DetailConfiguratorStudio({
   const productDetailRows = !isWindow ? getProductDetailRows(state) : [];
   const productPrice = !isWindow ? estimateProductPrice(state) : 0;
   const previewRows = isWindow ? detailRows : productDetailRows;
-  const previewPrice = isWindow ? projectPrice : productPrice;
   const productStepperIndex = detailStepId === 'customer' ? 1 : 0;
   const isMobileViewport = useMediaQuery('(max-width: 768px)');
   const [quantityModalOpen, setQuantityModalOpen] = useState(false);
@@ -1011,8 +991,6 @@ export default function DetailConfiguratorStudio({
               )}
               <DetailsCard
                 rows={previewRows}
-                unitPrice={previewPrice}
-                currentStepIndex={isWindow ? stepperActiveIndex : productStepperIndex}
               />
             </div>
           </aside>

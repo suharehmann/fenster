@@ -741,6 +741,192 @@ body:has(.wizard-shell--intro-step) {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1600px) {
+  .wizard-shell--intro-step {
+    --intro-selection-card-w: 208px;
+    --intro-product-card-w: 236px;
+    --intro-selection-card-media-min-h: 128px;
+  }
+
+  .wizard-shell--intro-step .wizard-layout--intro {
+    padding: 0 7%;
+  }
+
+  .wizard-shell--intro-step .intro-selection-grid,
+  .wizard-shell--intro-step .product-grid,
+  .wizard-shell--intro-step .material-grid,
+  .wizard-shell--intro-step .manufacturer-grid {
+    gap: 12px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-media,
+  .wizard-shell--intro-step .product-card-media,
+  .wizard-shell--intro-step .material-card-media,
+  .wizard-shell--intro-step .manufacturer-card-media {
+    margin: 12px 12px 8px;
+    padding: 14px;
+    min-height: var(--intro-selection-card-media-min-h, 128px);
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-copy,
+  .wizard-shell--intro-step .product-card-copy,
+  .wizard-shell--intro-step .material-card-copy,
+  .wizard-shell--intro-step .manufacturer-card-copy {
+    padding: 0 12px 14px;
+    gap: 2px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-title,
+  .wizard-shell--intro-step .product-card-title,
+  .wizard-shell--intro-step .material-card-title,
+  .wizard-shell--intro-step .manufacturer-name {
+    font-size: 15px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-desc,
+  .wizard-shell--intro-step .product-card-desc,
+  .wizard-shell--intro-step .material-card-desc,
+  .wizard-shell--intro-step .manufacturer-leadtime,
+  .wizard-shell--intro-step .intro-selection-card-meta,
+  .wizard-shell--intro-step .material-card-price {
+    font-size: 12px;
+    line-height: 1.32;
+  }
+
+  .wizard-shell--intro-step .material-card-price,
+  .wizard-shell--intro-step .manufacturer-leadtime {
+    display: none;
+  }
+
+  .wizard-shell--material-step .material-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+
+  .wizard-shell--material-step .material-card {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .wizard-shell--material-step .material-card-media {
+    min-height: 110px;
+    margin: 10px 10px 6px;
+    padding: 12px;
+  }
+
+  .wizard-shell--material-step .material-card-copy {
+    padding: 0 10px 12px;
+  }
+
+  .wizard-shell--material-step .material-card-title {
+    font-size: 14px;
+  }
+
+  .wizard-shell--material-step .material-card-desc {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .wizard-shell--material-step .material-card-price {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-height: 900px) {
+  .wizard-shell--intro-step {
+    --intro-selection-card-media-min-h: 132px;
+    --intro-selection-card-w: 260px;
+    --intro-product-card-w: 320px;
+  }
+
+  .content-container:has(.wizard-shell--intro-step),
+  .content-container:has(.wizard-shell--intro-step):not(:has(.detail-phase-page)) {
+    padding: 16px 0 12px !important;
+  }
+
+  .wizard-shell--intro-step .wizard-layout--intro {
+    padding: 0 7%;
+  }
+
+  .wizard-shell--intro-step .wizard-nav--step-progress {
+    padding-bottom: 12px;
+  }
+
+  .wizard-shell--intro-step .wizard-step-progress__header {
+    margin-bottom: 12px;
+  }
+
+  .wizard-shell--intro-step .wizard-step-progress__title {
+    font-size: 16px;
+  }
+
+  .wizard-shell--intro-step .wizard-step-progress__trail {
+    --wizard-step-dot: 28px;
+  }
+
+  .wizard-shell--intro-step .intro-step-center {
+    padding-top: 12px;
+  }
+
+  .wizard-shell--intro-step .intro-step__title {
+    font-size: 20px;
+    line-height: 1.22;
+  }
+
+  .wizard-shell--intro-step .intro-step__subtitle {
+    margin-bottom: 16px;
+  }
+
+  .wizard-shell--intro-step .intro-step-hint {
+    margin-top: 0.9rem;
+  }
+
+  .wizard-shell--intro-step .intro-selection-grid,
+  .wizard-shell--intro-step .product-grid,
+  .wizard-shell--intro-step .material-grid,
+  .wizard-shell--intro-step .manufacturer-grid {
+    gap: 12px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-media,
+  .wizard-shell--intro-step .product-card-media,
+  .wizard-shell--intro-step .material-card-media,
+  .wizard-shell--intro-step .manufacturer-card-media {
+    margin: 12px 12px 8px;
+    padding: 14px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-copy,
+  .wizard-shell--intro-step .product-card-copy,
+  .wizard-shell--intro-step .material-card-copy,
+  .wizard-shell--intro-step .manufacturer-card-copy {
+    padding: 0 12px 14px;
+    gap: 2px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-title,
+  .wizard-shell--intro-step .product-card-title,
+  .wizard-shell--intro-step .material-card-title,
+  .wizard-shell--intro-step .manufacturer-name {
+    font-size: 15px;
+  }
+
+  .wizard-shell--intro-step .intro-selection-card-desc,
+  .wizard-shell--intro-step .product-card-desc,
+  .wizard-shell--intro-step .material-card-desc,
+  .wizard-shell--intro-step .manufacturer-leadtime,
+  .wizard-shell--intro-step .intro-selection-card-meta,
+  .wizard-shell--intro-step .material-card-price {
+    font-size: 12px;
+    line-height: 1.32;
+  }
+}
+
 @media (min-width: 769px) {
   .wizard-shell--intro-step.wizard-shell:not(.detail-phase-page) .wizard-nav--step-progress {
     background: transparent !important;
