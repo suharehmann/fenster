@@ -41,7 +41,9 @@
   text-transform: uppercase;
   color: var(--home-accent);
 
-  img {
+  .anticon {
+    font-size: 1.125rem;
+    line-height: 1;
     opacity: 0.9;
   }
 }

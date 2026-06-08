@@ -1,7 +1,7 @@
 import './WindowSelectDropdown.scss';
 import { useEffect, useRef, useState } from 'react';
-import { DownOutlined } from '@ant-design/icons';
 import { getWindowDisplayName } from '@/lib/configurator/windowLabel';
+import DropdownChevron from './DropdownChevron';
 
 export default function WindowSelectDropdown({
   windows,
@@ -57,7 +57,7 @@ export default function WindowSelectDropdown({
         <span className="fv-window-select-value">
           {formatSummary(activeWindow, activeIndex, material)}
         </span>
-        <DownOutlined className="fv-window-select-chevron" aria-hidden />
+        <DropdownChevron isOpen={isOpen} className="fv-window-select-chevron" />
       </button>
       {isOpen && (
         <ul className="fv-window-select-menu" role="listbox" aria-label="Fenster auswaehlen">

@@ -147,7 +147,7 @@
       box-shadow: none;
 
       .wizard-step-progress__check {
-        stroke: var(--wizard-step-done-strong, #4b6043);
+        color: var(--wizard-step-done-strong, #4b6043);
       }
     }
   }
@@ -189,8 +189,8 @@
 }
 
 .wizard-step-progress__check {
-  width: 12px;
-  height: 12px;
+  font-size: 12px;
+  line-height: 1;
 }
 
 .wizard-step-progress__label {
@@ -239,7 +239,7 @@
   }
 
   .wizard-step-progress__check {
-    stroke: var(--wizard-step-done-strong);
+    color: var(--wizard-step-done-strong);
   }
 
   .wizard-step-progress__label {

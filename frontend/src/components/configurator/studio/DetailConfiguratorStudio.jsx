@@ -2,7 +2,6 @@
 import './DetailConfiguratorStudio.scss';
 import {
   ArrowLeftOutlined,
-  DeleteOutlined,
   EditOutlined,
   FullscreenOutlined,
   MinusOutlined,
@@ -14,6 +13,9 @@ import { Button } from 'antd';
 import SelectedMark from '@/components/ui/SelectedMark';
 import ConfigStepper from './ConfigStepper';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import MobileConfigDropdown from '../controls/MobileConfigDropdown';
+import MobileDetailsCollapse from '../controls/MobileDetailsCollapse';
+import WindowPanel from '../controls/WindowPanel';
 import WindowSelectDropdown from '../controls/WindowSelectDropdown';
 import WindowQuantityModal from '../controls/WindowQuantityModal';
 import WindowNameModal from '../controls/WindowNameModal';
@@ -112,6 +114,11 @@ function formatWindowSummary(win, index, material) {
   const opening = optionLabel(OPENING_TYPES, win?.openingType);
   const handle = optionLabel(HANDLES, win?.handle);
   return `${getWindowDisplayName(win, index)} — ${material || 'Noch offen'} · ${windowType || 'Typ offen'} · ${opening || 'Öffnung offen'} · ${handle || 'Griff offen'} · ${dims}`;
+}
+
+function formatWindowListSubtitle(win, material) {
+  const dims = `${formatMm(win?.width, 1200)} × ${formatMm(win?.height, 1400)} mm`;
+  return `${material || 'Noch offen'}, ${dims}`;
 }
 
 function formatWindowDetail(win, material) {
@@ -270,29 +277,6 @@ function WindowRail({
   onDeleteWindow,
   canDeleteWindow
 }) {
-  const totalSlots = Math.max(slotCount ?? windows.length, 1);
-
-  function renderWindowItemActions(index, label, { onEdit, showDelete = true }) {
-    return (
-      <div className="fv-window-item-actions">
-        <button type="button" className="fv-window-item-edit" onClick={onEdit} aria-label={`${label} umbenennen`}>
-          <EditOutlined className="fv-edit-icon" aria-hidden />
-        </button>
-        {showDelete ? (
-          <button
-            type="button"
-            className="fv-window-item-delete"
-            onClick={() => onDeleteWindow(index)}
-            disabled={!canDeleteWindow}
-            aria-label={`${label} entfernen`}
-          >
-            <DeleteOutlined className="fv-edit-icon" aria-hidden />
-          </button>
-        ) : null}
-      </div>
-    );
-  }
-
   return (
     <aside className="fv-rail" aria-label="Projektfenster">
       <button type="button" className="fv-back-link" onClick={onExit} aria-label="Zurueck zur Uebersicht">
@@ -301,89 +285,21 @@ function WindowRail({
         </span>
         <span className="fv-back-label">Zurueck zur Uebersicht</span>
       </button>
-      <div className="fv-window-panel">
-        <div className="fv-window-panel-head">
-          <div className="fv-window-panel-title-row">
-            <h2>Ihre Fenster</h2>
-            <span className="fv-window-select-hint">Fenster waehlen</span>
-          </div>
-          <div className="fv-window-panel-actions">
-            <span className="fv-window-count">{totalSlots}</span>
-            <button
-              type="button"
-              className="fv-window-edit"
-              onClick={onEditQuantity}
-              aria-haspopup="dialog"
-              aria-label="Anzahl Fenster bearbeiten"
-            >
-              <EditOutlined className="fv-edit-icon" aria-hidden />
-              Bearbeiten
-            </button>
-          </div>
-        </div>
-        <div className="fv-window-select-wrap">
-          <WindowSelectDropdown
-            windows={windows}
-            activeIndex={activeIndex}
-            material={material}
-            onSelect={onSelect}
-            formatSummary={formatWindowSummary}
-            formatDetail={formatWindowDetail}
-          />
-        </div>
-        <div className="fv-window-list">
-          {Array.from({ length: totalSlots }, (_, index) => {
-            const win = windows[index];
-            if (!win) {
-              return (
-                <div key={`window-slot-empty-${index}`} className="fv-window-item-row">
-                  <button
-                    type="button"
-                    className="fv-window-item fv-window-item--empty"
-                    onClick={() => onEnsureSlot(index)}
-                  >
-                    <span className="fv-window-num">{index + 1}</span>
-                    <span className="fv-window-item-text">
-                      <strong>Fenster {index + 1}</strong>
-                      <span>Leer — zum Konfigurieren waehlen</span>
-                    </span>
-                  </button>
-                  {renderWindowItemActions(index, `Fenster ${index + 1}`, {
-                    onEdit: () => {
-                      onEnsureSlot(index);
-                      onEditName(index);
-                    }
-                  })}
-                </div>
-              );
-            }
-            const label = getWindowDisplayName(win, index);
-            return (
-              <div
-                key={win.id}
-                className={`fv-window-item-row ${activeIndex === index ? 'active' : ''}`}
-              >
-                <button
-                  type="button"
-                  className={`fv-window-item ${activeIndex === index ? 'active' : ''}`}
-                  onClick={() => onSelect(index)}
-                >
-                  <span className="fv-window-num">{index + 1}</span>
-                  <span className="fv-window-item-text">
-                    <strong>{label}</strong>
-                    <span>
-                      {material || 'Noch offen'}, {formatMm(win?.width, 1200)} × {formatMm(win?.height, 1400)} mm
-                    </span>
-                  </span>
-                </button>
-                {renderWindowItemActions(index, label, {
-                  onEdit: () => onEditName(index)
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <WindowPanel
+        windows={windows}
+        slotCount={slotCount}
+        activeIndex={activeIndex}
+        material={material}
+        onSelect={onSelect}
+        onEnsureSlot={onEnsureSlot}
+        onEditQuantity={onEditQuantity}
+        onEditName={onEditName}
+        onDeleteWindow={onDeleteWindow}
+        canDeleteWindow={canDeleteWindow}
+        formatSummary={formatWindowSummary}
+        formatDetail={formatWindowDetail}
+        formatListSubtitle={formatWindowListSubtitle}
+      />
       <div className="fv-help-card">
         <img src={BRAND_LOGO} alt="" className="fv-help-logo" width={22} height={22} />
         <div className="fv-help-copy">
@@ -781,7 +697,24 @@ export default function DetailConfiguratorStudio({
   const nameModalWindow =
     nameModalIndex !== null ? state.windows[nameModalIndex] : null;
   const stepperActiveIndex = getStepperDisplayIndex(detailStepId, subStep);
-  const activeStepperStep = STEPPER_STEPS[stepperActiveIndex] ?? STEPPER_STEPS[0];
+  const mobileStepperSteps = isWindow ? STEPPER_STEPS : PRODUCT_STEPS;
+  const mobileStepperIndex = isWindow ? stepperActiveIndex : productStepperIndex;
+  const mobileActiveStep = mobileStepperSteps[mobileStepperIndex] ?? mobileStepperSteps[0];
+  const useMobileConfigDropdown = isMobileViewport && !isInquiryStep;
+
+  function handleMobileStepSelect(displayIndex) {
+    if (isWindow) {
+      handleStepperSelect(displayIndex);
+      return;
+    }
+
+    const stepIndex = detailSteps.findIndex((step) =>
+      displayIndex === 0 ? step.id === 'product-config' : step.id === 'customer'
+    );
+    if (stepIndex >= 0) {
+      onStepChange(stepIndex, 0);
+    }
+  }
 
   function handleQuantityConfirm(value) {
     const nextCount = clampQuantity(value);
@@ -855,7 +788,7 @@ export default function DetailConfiguratorStudio({
       } ${isInquiryStep && isWindow ? 'inquiry-window-mode' : ''}`}
     >
       <div className="fv-studio-grid">
-        {showStudioChrome && isWindow && (
+        {showStudioChrome && isWindow && (!isMobileViewport || isInquiryStep) && (
           <WindowRail
             windows={state.windows}
             slotCount={state.quantity}
@@ -870,7 +803,7 @@ export default function DetailConfiguratorStudio({
             canDeleteWindow={canDeleteWindow}
           />
         )}
-        {showStudioChrome && !isWindow && (
+        {showStudioChrome && !isWindow && (!isMobileViewport || isInquiryStep) && (
           <ProductRail
             state={state}
             activeIndex={activeWindowIndex}
@@ -881,62 +814,65 @@ export default function DetailConfiguratorStudio({
         )}
 
         <main className="fv-main">
-          <header className="fv-main-head">
-            <h1>{headTitle}</h1>
-            <p>{headLead}</p>
-          </header>
-
-          {!isWindow && !isInquiryStep && isMobileViewport ? (
+          {useMobileConfigDropdown ? (
+            <MobileConfigDropdown
+              title={headTitle}
+              subtitle={headLead}
+              stepKicker={`Schritt ${mobileActiveStep.num} von ${mobileStepperSteps.length}`}
+              stepTitle={mobileActiveStep.title}
+              steps={mobileStepperSteps}
+              activeIndex={mobileStepperIndex}
+              onStepSelect={handleMobileStepSelect}
+            >
+              {!isInquiryStep && stepPartTotal > 1 ? (
+                <p className="detail-studio-kicker fv-step-part-hint fv-mobile-config-dropdown__part-hint">
+                  {stepKicker}
+                  <span className="fv-step-part-sep" aria-hidden="true">
+                    {' '}
+                    ·{' '}
+                  </span>
+                  Teil {stepPart} von {stepPartTotal}
+                </p>
+              ) : null}
+            </MobileConfigDropdown>
+          ) : (
             <>
-              <p className="fv-step-mobile-kicker">Schritt {PRODUCT_STEPS[productStepperIndex].num}</p>
-              <div className="fv-step-mobile-badge" aria-current="step">
-                <span className="fv-step-mobile-num" aria-hidden="true">
-                  {PRODUCT_STEPS[productStepperIndex].num}
-                </span>
-                <span className="fv-step-mobile-title">{PRODUCT_STEPS[productStepperIndex].title}</span>
-              </div>
-            </>
-          ) : null}
-          {!isWindow && !isInquiryStep && !isMobileViewport ? (
-            <ConfigStepper
-              steps={PRODUCT_STEPS}
-              activeIndex={productStepperIndex}
-              onSelect={(index) => {
-                const stepIndex = detailSteps.findIndex((s) =>
-                  index === 0 ? s.id === 'product-config' : s.id === 'customer'
-                );
-                if (stepIndex >= 0) onStepChange(stepIndex, 0);
-              }}
-              getKey={(item) => item.num}
-              getNum={(item) => item.num}
-              getLabel={(item) => item.title}
-            />
-          ) : null}
+              <header className="fv-main-head">
+                <h1>{headTitle}</h1>
+                <p>{headLead}</p>
+              </header>
 
-          {isWindow && !isInquiryStep && isMobileViewport ? (
-            <>
-              <p className="fv-step-mobile-kicker">Schritt {activeStepperStep.num}</p>
-              <div className="fv-step-mobile-badge" aria-current="step">
-                <span className="fv-step-mobile-num" aria-hidden="true">
-                  {activeStepperStep.num}
-                </span>
-                <span className="fv-step-mobile-title">{activeStepperStep.title}</span>
-              </div>
+              {!isWindow && !isInquiryStep && !isMobileViewport ? (
+                <ConfigStepper
+                  steps={PRODUCT_STEPS}
+                  activeIndex={productStepperIndex}
+                  onSelect={(index) => {
+                    const stepIndex = detailSteps.findIndex((s) =>
+                      index === 0 ? s.id === 'product-config' : s.id === 'customer'
+                    );
+                    if (stepIndex >= 0) onStepChange(stepIndex, 0);
+                  }}
+                  getKey={(item) => item.num}
+                  getNum={(item) => item.num}
+                  getLabel={(item) => item.title}
+                />
+              ) : null}
+
+              {isWindow && !isInquiryStep && !isMobileViewport ? (
+                <ConfigStepper
+                  steps={STEPPER_STEPS}
+                  activeIndex={stepperActiveIndex}
+                  onSelect={handleStepperSelect}
+                  getKey={(item) => item.num}
+                  getNum={(item) => item.num}
+                  getLabel={(item) => item.title}
+                />
+              ) : null}
             </>
-          ) : null}
-          {isWindow && !isInquiryStep && !isMobileViewport ? (
-            <ConfigStepper
-              steps={STEPPER_STEPS}
-              activeIndex={stepperActiveIndex}
-              onSelect={handleStepperSelect}
-              getKey={(item) => item.num}
-              getNum={(item) => item.num}
-              getLabel={(item) => item.title}
-            />
-          ) : null}
+          )}
 
           <div className="fv-step-body studio-embedded">
-            {!isInquiryStep && stepPartTotal > 1 && (
+            {!isInquiryStep && stepPartTotal > 1 && !useMobileConfigDropdown && (
               <p className="detail-studio-kicker fv-step-part-hint">
                 {stepKicker}
                 <span className="fv-step-part-sep" aria-hidden="true">
@@ -970,7 +906,7 @@ export default function DetailConfiguratorStudio({
 
         {showStudioChrome && (
           <aside className="fv-preview-col" aria-label="Live Vorschau">
-            <div className="fv-preview-bundle">
+            <div className={`fv-preview-bundle${useMobileConfigDropdown ? ' fv-preview-bundle--preview-only' : ''}`}>
               {isWindow ? (
                 <PreviewCard
                   previewMode={previewMode}
@@ -989,10 +925,39 @@ export default function DetailConfiguratorStudio({
               ) : (
                 <ProductPreviewCard state={state} />
               )}
-              <DetailsCard
-                rows={previewRows}
-              />
+              {!useMobileConfigDropdown && <DetailsCard rows={previewRows} />}
             </div>
+
+            {useMobileConfigDropdown && showStudioChrome ? (
+              <MobileDetailsCollapse rows={previewRows} />
+            ) : null}
+
+            {useMobileConfigDropdown && showStudioChrome && isWindow ? (
+              <div className="fv-mobile-window-select">
+                <div className="fv-mobile-window-select__head">
+                  <h3>Ihre Fenster</h3>
+                  <button
+                    type="button"
+                    className="fv-mobile-window-select__edit"
+                    onClick={() => setQuantityModalOpen(true)}
+                    aria-haspopup="dialog"
+                    aria-label="Anzahl Fenster bearbeiten"
+                  >
+                    <EditOutlined className="fv-edit-icon" aria-hidden />
+                    Bearbeiten
+                  </button>
+                </div>
+                <WindowSelectDropdown
+                  windows={state.windows}
+                  activeIndex={activeWindowIndex}
+                  material={g.material}
+                  onSelect={setActiveWindowIndex}
+                  formatSummary={formatWindowSummary}
+                  formatDetail={formatWindowDetail}
+                />
+              </div>
+            ) : null}
+
           </aside>
         )}
       </div>

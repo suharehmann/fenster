@@ -100,9 +100,9 @@
 }
 
 .brand-logo {
-  width: 1.35rem;
-  height: 1.35rem;
-  object-fit: contain;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--fv-accent, #c1440e);
 }
 
 .brand-copy {
@@ -243,8 +243,7 @@ body.nav-menu-open {
   }
 
   .brand-logo {
-    width: 1.2rem;
-    height: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .brand-name {
@@ -378,8 +377,7 @@ body.nav-menu-open {
     }
 
     .brand-logo {
-      width: 1.1rem;
-      height: 1.1rem;
+      font-size: 1.1rem;
     }
   }
 

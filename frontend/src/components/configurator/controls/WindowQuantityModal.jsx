@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import {
   QUANTITY_MAX,
@@ -75,7 +76,7 @@ export default function WindowQuantityModal({
           disabled={quantityDraft <= QUANTITY_MIN}
           aria-label="Weniger"
         >
-          −
+          <MinusOutlined aria-hidden />
         </button>
         <input
           type="number"
@@ -92,7 +93,7 @@ export default function WindowQuantityModal({
           disabled={quantityDraft >= QUANTITY_MAX}
           aria-label="Mehr"
         >
-          +
+          <PlusOutlined aria-hidden />
         </button>
       </div>
       <div className="fv-quantity-presets">

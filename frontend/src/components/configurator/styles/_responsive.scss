@@ -241,31 +241,38 @@
     gap: 0.45rem !important;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) {
-    padding: 0.45rem 1.75rem 0.45rem 0 !important;
-    gap: 0.22rem;
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) {
+    padding: 0.45rem !important;
+    gap: 0.32rem !important;
     min-height: 0 !important;
+    border-radius: 5px !important;
+    overflow: hidden;
     align-content: start;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) img {
-    width: calc(100% + 1.75rem);
-    max-width: none;
-    margin-right: -1.75rem;
-    margin-left: 0;
-    max-height: 42px;
-    height: auto;
-    aspect-ratio: auto;
+  .detail-phase-page .fv-studio .studio-embedded .select-card-media {
+    min-height: 4rem;
+  }
+
+  .detail-phase-page .fv-studio .studio-embedded .select-card-media img {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    min-height: 3.5rem;
+    height: 3.75rem;
+    max-height: none;
     object-fit: contain;
+    object-position: center;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) strong,
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) span:not(.card-badge):not(.card-check) {
-    padding-left: 0.45rem;
-    padding-right: 0.3rem;
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) strong,
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) span:not(.card-badge):not(.card-check):not(.card-check-icon) {
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    text-align: center;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) strong {
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) strong {
     font-size: 0.74rem !important;
     line-height: 1.2;
   }
@@ -331,6 +338,12 @@
     display: contents;
   }
 
+  .fv-mobile-config-dropdown {
+    order: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
   .fv-main-head {
     order: 1;
   }
@@ -353,16 +366,24 @@
     order: 4;
   }
 
+  .fv-mobile-details-collapse {
+    order: 5;
+  }
+
+  .fv-mobile-window-select {
+    order: 6;
+  }
+
   .fv-window-panel {
     order: 5;
   }
 
   .fv-step-body {
-    order: 6;
+    order: 7;
   }
 
   .fv-step-foot {
-    order: 7;
+    order: 8;
   }
 
   .fv-rail > .fv-back-link,
@@ -531,6 +552,10 @@
     border-radius: var(--fv-radius, 5px);
     box-shadow: 0 1px 3px rgba(28, 25, 23, 0.05);
     overflow: hidden;
+  }
+
+  .fv-preview-bundle--preview-only {
+    min-height: var(--fv-mobile-preview-h);
   }
 
   .fv-preview-bundle .fv-preview-card {
@@ -876,6 +901,9 @@
     border-radius: var(--fv-radius, 5px);
     box-shadow: 0 1px 3px rgba(28, 25, 23, 0.05);
     overflow: visible;
+    grid-template-rows: auto;
+    grid-template-areas: 'select';
+    height: auto;
   }
 
   .fv-window-panel-head {
@@ -975,13 +1003,7 @@
     right: 0.65rem;
     top: 0.62rem;
     margin-top: 0;
-    font-size: 0.7rem;
-    color: #b45309;
-    transition: transform 0.2s ease;
-  }
-
-  .fv-window-select.is-open .fv-window-select-chevron {
-    transform: rotate(180deg);
+    font-size: 0.8rem;
   }
 
   .fv-window-select-menu {
@@ -1152,38 +1174,66 @@
     font-size: 0.66rem;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:not(:has(img)) {
+  .detail-phase-page .fv-studio .studio-embedded .select-card:not(:has(.select-card-media)) {
     min-height: 2.75rem !important;
     padding: 0.5rem 1.75rem 0.5rem 0.55rem !important;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) {
-    padding: 0.38rem 1.6rem 0.38rem 0 !important;
-    gap: 0.18rem;
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) {
+    padding: 0.35rem !important;
+    gap: 0.28rem !important;
     min-height: 0 !important;
+    border-radius: 5px !important;
+    overflow: hidden;
+    align-content: start;
+    justify-items: stretch;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) img {
-    width: calc(100% + 1.6rem);
-    max-width: none;
-    margin-right: -1.6rem;
-    margin-left: 0;
-    max-height: 34px;
+  .detail-phase-page .fv-studio .studio-embedded .select-card-media {
+    min-height: 3.75rem;
+    padding: 0.3rem;
+  }
+
+  .detail-phase-page .fv-studio .studio-embedded .select-card-media img {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    min-height: 3rem;
+    height: 3.25rem;
+    max-height: none;
     object-fit: contain;
+    object-position: center;
+    display: block;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) strong,
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) span:not(.card-badge):not(.card-check) {
-    padding-left: 0.4rem;
-    padding-right: 0.25rem;
+  .detail-phase-page .fv-studio .studio-embedded .select-card-media .card-check {
+    top: 0.25rem;
+    right: 0.25rem;
+    width: 1.1rem;
+    height: 1.1rem;
+
+    .card-check-icon,
+    .anticon {
+      font-size: 0.58rem;
+      color: #fff !important;
+    }
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card:has(img) strong {
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) strong,
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) span:not(.card-badge):not(.card-check):not(.card-check-icon) {
+    padding-left: 0.1rem !important;
+    padding-right: 0.1rem !important;
+    text-align: center;
+    width: 100%;
+  }
+
+  .detail-phase-page .fv-studio .studio-embedded .select-card:has(.select-card-media) strong {
     font-size: 0.72rem !important;
     line-height: 1.15;
+    justify-self: center;
   }
 
-  .detail-phase-page .fv-studio .studio-embedded .select-card span:not(.card-badge):not(.card-check) {
+  .detail-phase-page .fv-studio .studio-embedded .select-card span:not(.card-badge):not(.card-check):not(.card-check-icon) {
     font-size: 0.68rem;
     line-height: 1.2;
   }

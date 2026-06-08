@@ -1,3 +1,4 @@
+import { CheckOutlined } from '@ant-design/icons';
 import './ConfigStepper.scss';
 
 export default function ConfigStepper({
@@ -29,7 +30,7 @@ export default function ConfigStepper({
             aria-current={isActive ? 'step' : undefined}
           >
             <span className="fv-stepper-num" aria-hidden="true">
-              {isDone ? '✓' : stepNumber}
+              {isDone ? <CheckOutlined className="fv-stepper-check" aria-hidden /> : stepNumber}
             </span>
             <span className="fv-stepper-label">{getLabel(step)}</span>
           </button>

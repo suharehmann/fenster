@@ -1,6 +1,6 @@
 import './NonWindowProductStep.scss';
 import { Input, InputNumber, Select } from 'antd';
-import { ControlOutlined, ExpandOutlined } from '@ant-design/icons';
+import { ControlOutlined, ExpandOutlined, SettingOutlined } from '@ant-design/icons';
 import OptionGrid from '../options/OptionGrid';
 import ConfigSection from '../shared/ConfigSection';
 import { setGroupField } from '@/lib/configurator/state';

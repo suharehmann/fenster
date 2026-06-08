@@ -7,7 +7,7 @@
 .select-card {
   position: relative;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 5px !important;
   background: #fff;
   text-align: left;
   padding: 0.7rem 2.15rem 0.7rem 0.75rem;
@@ -19,24 +19,71 @@
   align-content: center;
 }
 
-.select-card:has(img) {
-  padding: 0.55rem;
+.select-card:has(.select-card-media) {
+  padding: 0.45rem;
   min-height: 0;
   align-content: start;
+  justify-items: stretch;
 }
 
-.select-card img {
+.select-card-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 0.35rem;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  box-sizing: border-box;
+}
+
+.select-card-media img {
   position: relative;
   z-index: 1;
   display: block;
   width: 100%;
-  height: 5.75rem;
-  aspect-ratio: 260 / 220;
+  height: 4rem;
+  max-height: 4.5rem;
   object-fit: contain;
   object-position: center;
-  border-radius: var(--fv-radius, 5px);
-  border: 1px solid #e2e8f0;
-  background: #f8fafc;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  margin: 0;
+}
+
+.select-card-media .card-check {
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--fv-accent, var(--accent));
+  color: #fff;
+  border: 0;
+  box-shadow:
+    0 0 0 1.5px #fff,
+    0 1px 4px rgba(28, 25, 23, 0.16);
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.select-card.selected .select-card-media .card-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.select-card-media .card-check .card-check-icon,
+.select-card-media .card-check .anticon {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #fff !important;
+
+  svg {
+    fill: currentColor;
+  }
 }
 
 .select-card:has(.color-chip) {
@@ -50,7 +97,7 @@
   padding-right: 0.15rem;
 }
 
-.select-card span:not(.card-badge):not(.card-check) {
+.select-card span:not(.card-badge):not(.card-check):not(.card-check-icon) {
   font-size: 0.72rem;
   color: var(--muted);
   line-height: 1.25;

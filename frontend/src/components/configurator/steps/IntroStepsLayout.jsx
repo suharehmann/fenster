@@ -1,3 +1,4 @@
+import { CheckOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import OptionCard from '../options/OptionCard';
 import { QUANTITY_PRESETS } from '@/lib/configurator/quantity';
@@ -114,20 +115,7 @@ function StepperNav({ steps, currentStep, onStepChange }) {
               >
                 <span className="wizard-step-progress__dot" aria-hidden="true">
                   {isDone ? (
-                    <svg
-                      className="wizard-step-progress__check"
-                      viewBox="0 0 12 12"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M2 6l3 3 5-5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <CheckOutlined className="wizard-step-progress__check" aria-hidden />
                   ) : (
                     index + 1
                   )}
@@ -317,7 +305,7 @@ function QuantityStep({ state, onSetQuantity }) {
             disabled={!canDecrease}
             aria-label="Anzahl verringern"
           >
-            <span aria-hidden="true">−</span>
+            <MinusOutlined aria-hidden />
           </button>
 
           <label className="intro-quantity-picker__display">
@@ -343,7 +331,7 @@ function QuantityStep({ state, onSetQuantity }) {
             disabled={!canIncrease}
             aria-label="Anzahl erhoehen"
           >
-            <span aria-hidden="true">+</span>
+            <PlusOutlined aria-hidden />
           </button>
         </div>
 

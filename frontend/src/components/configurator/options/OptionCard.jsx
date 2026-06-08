@@ -23,11 +23,15 @@ export default function OptionCard({
   return (
     <button type="button" className={cardClassName} onClick={handleSelect}>
       {option.badge && <span className="card-badge">{option.badge}</span>}
-      <SelectedMark selected={isSelected} />
       {children ?? (
         <>
-          {option.image && (
-            <img src={option.image} alt={optionLabel} loading="lazy" decoding="async" />
+          {option.image ? (
+            <span className="select-card-media">
+              <img src={option.image} alt={optionLabel} loading="lazy" decoding="async" />
+              <SelectedMark selected={isSelected} />
+            </span>
+          ) : (
+            <SelectedMark selected={isSelected} />
           )}
           {option.color && (
             <span className="color-chip" style={{ backgroundColor: option.color }} aria-hidden="true" />

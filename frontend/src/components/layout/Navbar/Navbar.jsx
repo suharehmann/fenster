@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import BrandIcon from '@/components/ui/BrandIcon';
 import './Navbar.scss';
-
-const BRAND_LOGO = '/assets/configurator/window.svg';
 
 const NAV_LINKS = [
   { to: '/', label: 'Startseite', end: true },
@@ -100,7 +99,7 @@ export default function Navbar() {
       <div className="nav-inner">
         <NavLink className="brand" to="/" onClick={handleCloseMenu}>
           <span className="brand-mark" aria-hidden="true">
-            <img src={BRAND_LOGO} alt="" className="brand-logo" width={22} height={22} />
+            <BrandIcon className="brand-logo" size={22} />
           </span>
           <span className="brand-copy">
             <span className="brand-name">FensterVision</span>
@@ -142,7 +141,7 @@ export default function Navbar() {
         <div className="nav-drawer-head">
           <div className="nav-drawer-brand">
             <span className="brand-mark" aria-hidden="true">
-              <img src={BRAND_LOGO} alt="" className="brand-logo" width={18} height={18} />
+              <BrandIcon className="brand-logo" size={18} />
             </span>
             <span>FensterVision</span>
           </div>

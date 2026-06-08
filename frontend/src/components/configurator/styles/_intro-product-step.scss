@@ -383,8 +383,8 @@ body:has(.wizard-shell--intro-step) {
       box-shadow: 0 0 0 2px #fff;
 
       .card-check-icon {
-        width: 11px;
-        height: 11px;
+        font-size: 11px;
+        line-height: 1;
       }
     }
 

@@ -281,6 +281,10 @@
 }
 
 .wc-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   margin-top: 2px;
   padding: 11px 18px;
   background: #2563eb;

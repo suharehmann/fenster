@@ -24,11 +24,18 @@
 }
 
 .details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
   border: 0;
   background: transparent;
   color: #fff;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
+
+  .anticon {
+    font-size: 0.82rem;
+  }
 }
 
 .section-content {

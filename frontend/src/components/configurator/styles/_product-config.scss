@@ -76,7 +76,7 @@
     font-size: 0.88rem;
   }
 
-  span:not(.card-badge):not(.card-check) {
+  span:not(.card-badge):not(.card-check):not(.card-check-icon) {
     font-size: 0.72rem;
     color: var(--muted);
   }

@@ -1,3 +1,4 @@
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import {
   MATERIALS,
@@ -243,7 +244,7 @@ export default function WindowConfigurator() {
               </p>
             )}
             <button type="button" className="wc-next" disabled={!isSizeValid}>
-              Weiter zur Anfrage
+              Weiter zur Anfrage <ArrowRightOutlined aria-hidden />
             </button>
           </section>
         </div>

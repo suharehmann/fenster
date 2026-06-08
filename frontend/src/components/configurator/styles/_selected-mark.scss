@@ -24,9 +24,14 @@
 
   .card-check-icon {
     display: block;
-    width: 0.65rem;
-    height: 0.65rem;
+    font-size: 0.65rem;
+    line-height: 1;
     flex-shrink: 0;
+    color: #fff;
+
+    svg {
+      fill: currentColor;
+    }
   }
 }
 
@@ -41,3 +46,4 @@
   opacity: 1;
   transform: scale(1);
 }
+

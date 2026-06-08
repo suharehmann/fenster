@@ -9,6 +9,7 @@ import {
   RocketOutlined,
   ToolOutlined
 } from '@ant-design/icons';
+import BrandIcon from '@/components/ui/BrandIcon';
 import { Link } from 'react-router-dom';
 import useAos from '@/hooks/useAos';
 import './HomePage.scss';
@@ -127,7 +128,7 @@ export default function HomePage() {
           data-aos-easing="ease-out-cubic"
         >
           <p className="home-eyebrow">
-            <img src="/assets/configurator/window.svg" alt="" width={18} height={18} />
+            <BrandIcon size={18} />
             FensterVision · Kunststofffenster
           </p>
           <h1>
