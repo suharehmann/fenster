@@ -148,17 +148,6 @@ function IntroStepShell({
         isStartingConfiguration ? ' is-starting-configuration' : ''
       }`}
     >
-      {isStartingConfiguration ? (
-        <div
-          className="configurator-start-loader"
-          role="status"
-          aria-live="polite"
-          aria-busy="true"
-        >
-          <Spin size="large" />
-          <p className="configurator-start-loader__text">Konfiguration wird vorbereitet...</p>
-        </div>
-      ) : null}
       <div className="wizard-layout wizard-layout--intro">
         <StepperNav steps={steps} currentStep={currentStep} onStepChange={onStepChange} />
 

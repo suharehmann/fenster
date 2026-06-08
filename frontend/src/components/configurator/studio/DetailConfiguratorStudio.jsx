@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import './DetailConfiguratorStudio.scss';
 import {
   ArrowLeftOutlined,
@@ -43,6 +43,7 @@ import { ensureWindowAtIndex, removeWindowAtIndex } from '@/lib/configurator/qua
 import {
   buildPreviewWindow,
   resolveConfiguredSvgPreview,
+  resolveDecorCatalogPreview,
   resolvePreviewImage,
   shouldPreferDynamicPreview
 } from '@/utils/previewConfig';
@@ -58,6 +59,10 @@ const PRODUCT_RAIL_META = {
 };
 
 const BRAND_LOGO = '/assets/configurator/window.svg';
+
+const PREVIEW_ZOOM_MIN = 0.6;
+const PREVIEW_ZOOM_MAX = 2.4;
+const PREVIEW_ZOOM_STEP = 0.2;
 
 const STEPPER_STEPS = [
   { num: '1', title: 'Material' },
@@ -422,6 +427,12 @@ function PreviewCard({
   detailStepId,
   subStep
 }) {
+  const [previewZoom, setPreviewZoom] = useState(1);
+
+  useEffect(() => {
+    setPreviewZoom(1);
+  }, [previewKey]);
+
   const previewWindow = buildPreviewWindow(window, globalConfig);
   const previewImage = resolvePreviewImage(window, globalConfig, {
     detailStepId,
@@ -433,6 +444,9 @@ function PreviewCard({
   const usesSelectedColors =
     isColorsStep || isBuildStep || detailStepId === 'glass' || detailStepId === 'security' || detailStepId === 'customer';
   const activeSurface = isColorsStep ? colorSurface : previewSurface;
+  const decorCatalogPreview = isColorsStep
+    ? resolveDecorCatalogPreview(globalConfig, activeSurface)
+    : null;
 
   function handlePreviewSurfaceChange(surface) {
     setPreviewSurface(surface);
@@ -446,15 +460,27 @@ function PreviewCard({
         subStep,
         colorSurface: activeSurface
       });
-  const resolvedPreviewImage = configuredSvgPreview || previewImage;
-  // CSS preview with selected decor colour (no catalog photo overrides).
-  const useShapePreview = usesSelectedColors;
+  const resolvedPreviewImage = decorCatalogPreview || configuredSvgPreview || previewImage;
+  // CSS preview with selected decor colour (catalog photo for mapped colours like Weiß).
+  const useShapePreview = usesSelectedColors && !decorCatalogPreview;
   const neutralShapePreview = isBeforeShapeStep(detailStepId);
   const useDynamic =
     !useShapePreview &&
+    !decorCatalogPreview &&
     !configuredSvgPreview &&
     (shouldPreferDynamicPreview(detailStepId, subStep) || !resolvedPreviewImage);
   const showHandle = detailStepId === 'security' || detailStepId === 'customer';
+
+  function handlePreviewZoomOut() {
+    setPreviewZoom((current) => Math.max(PREVIEW_ZOOM_MIN, Number((current - PREVIEW_ZOOM_STEP).toFixed(2))));
+  }
+
+  function handlePreviewZoomIn() {
+    setPreviewZoom((current) => Math.min(PREVIEW_ZOOM_MAX, Number((current + PREVIEW_ZOOM_STEP).toFixed(2))));
+  }
+
+  const canZoomOut = previewZoom > PREVIEW_ZOOM_MIN;
+  const canZoomIn = previewZoom < PREVIEW_ZOOM_MAX;
 
   return (
     <div className="fv-preview-card">
@@ -479,40 +505,45 @@ function PreviewCard({
         </div>
       </div>
       <div className="fv-preview-canvas detail-studio-preview-canvas">
-        {useShapePreview ? (
-          <StudioShapePreview
-            key={previewKey}
-            windowConfig={window}
-            globalConfig={globalConfig}
-            colorSurface={activeSurface}
-            neutralOnly={neutralShapePreview}
-            detailStepId={detailStepId}
-            subStep={subStep}
-          />
-        ) : useDynamic ? (
-          previewMode === '3d' ? (
-            <Window3DPreview
+        <div
+          className="fv-preview-zoom-stage"
+          style={{ '--fv-preview-zoom': previewZoom }}
+        >
+          {useShapePreview ? (
+            <StudioShapePreview
               key={previewKey}
-              windowConfig={previewWindow}
+              windowConfig={window}
               globalConfig={globalConfig}
               colorSurface={activeSurface}
-              showHandle={showHandle}
-              embedded
+              neutralOnly={neutralShapePreview}
+              detailStepId={detailStepId}
+              subStep={subStep}
             />
+          ) : useDynamic ? (
+            previewMode === '3d' ? (
+              <Window3DPreview
+                key={previewKey}
+                windowConfig={previewWindow}
+                globalConfig={globalConfig}
+                colorSurface={activeSurface}
+                showHandle={showHandle}
+                embedded
+              />
+            ) : (
+              <WindowPreview
+                key={previewKey}
+                windowConfig={previewWindow}
+                globalConfig={globalConfig}
+                colorSurface={activeSurface}
+                showHandle={showHandle}
+                embedded
+              />
+            )
           ) : (
-            <WindowPreview
-              key={previewKey}
-              windowConfig={previewWindow}
-              globalConfig={globalConfig}
-              colorSurface={activeSurface}
-              showHandle={showHandle}
-              embedded
-            />
-          )
-        ) : (
-          <CatalogImagePreview key={previewKey} src={resolvedPreviewImage} dims={dims} mode={previewMode} />
-        )}
-        {(useDynamic || useShapePreview) && (
+            <CatalogImagePreview key={previewKey} src={resolvedPreviewImage} dims={dims} mode={previewMode} />
+          )}
+        </div>
+        {(useDynamic || useShapePreview || decorCatalogPreview) && (
           <>
             <span className="detail-studio-dim detail-studio-dim-h">H {dims.h} mm</span>
             <span className="detail-studio-dim detail-studio-dim-w">B {dims.w} mm</span>
@@ -526,10 +557,22 @@ function PreviewCard({
           >
             <ReloadOutlined aria-hidden />
           </button>
-          <button type="button" title="Verkleinern" disabled>
+          <button
+            type="button"
+            title="Verkleinern"
+            disabled={!canZoomOut}
+            onClick={handlePreviewZoomOut}
+            aria-label="Vorschau verkleinern"
+          >
             <MinusOutlined aria-hidden />
           </button>
-          <button type="button" title="Vergroessern" disabled>
+          <button
+            type="button"
+            title="Vergroessern"
+            disabled={!canZoomIn}
+            onClick={handlePreviewZoomIn}
+            aria-label="Vorschau vergroessern"
+          >
             <PlusOutlined aria-hidden />
           </button>
           <button type="button" title="Vollbild" disabled>

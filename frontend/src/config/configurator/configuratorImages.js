@@ -2,32 +2,45 @@
 // Re-run the script after updating DOWNLOAD_MAP to refresh assets.
 
 export const CONFIGURATOR_IMAGE_BASE = '/assets/configurator';
+export const CATALOG_IMAGE_BASE = '/assets/catalog';
 
 export function configuratorImage(filename) {
   return `${CONFIGURATOR_IMAGE_BASE}/${filename}`;
 }
 
+export function catalogImage(filename) {
+  return `${CATALOG_IMAGE_BASE}/${filename}`;
+}
+
 export const PRODUCT_IMAGES = {
-  window: configuratorImage('product-fenster.png'),
-  door: configuratorImage('product-door.png'),
-  shutter: configuratorImage('product-shutter.png'),
+  window: catalogImage('product-fenster.png'),
+  door: catalogImage('product-door.png'),
+  shutter: catalogImage('product-shutter.png'),
+};
+
+/** Neutral front-view window shown in live preview at configuration start. */
+export const WINDOW_DEFAULT_PREVIEW = catalogImage('window-default-preview.png');
+
+/** Catalog photos keyed by decor colour id for the live preview. */
+export const DECOR_PREVIEW_IMAGES = {
+  Weiss: catalogImage('weib.png')
 };
 
 export const MATERIAL_IMAGES = {
-  Kunststoff: configuratorImage('material-kunststoff.png'),
-  "Kunststoff-Aluminium": configuratorImage('material-kunststoff-alu.png'),
-  Holz: configuratorImage('material-holz.png'),
-  "Holz-Aluminium": configuratorImage('material-holz-alu.png'),
-  Aluminium: configuratorImage('material-aluminium.png'),
+  Kunststoff: catalogImage('material-kunststoff.png'),
+  'Kunststoff-Aluminium': catalogImage('material-kunststoff-alu.png'),
+  Holz: catalogImage('material-holz.png'),
+  'Holz-Aluminium': catalogImage('material-holz-alu.png'),
+  Aluminium: catalogImage('material-aluminium.png'),
 };
 
 /** Only types with dedicated artwork; others use generated SVG shapes in defaults.js */
 export const WINDOW_TYPE_IMAGES = {
-  'Balkontuer einteilig': configuratorImage('window-balkontuer-einteilig.png'),
-  'Balkontuer zweiteilig': configuratorImage('window-balkontuer-zweiteilig.png'),
-  'Parallel-Schiebe-Kipp': configuratorImage('window-psk.png'),
-  'Hebe-Schiebetuer': configuratorImage('window-hebeschiebe.png'),
-  Sondertyp: configuratorImage('window-sondertyp.png')
+  'Balkontuer einteilig': catalogImage('window-balkontuer-einteilig.png'),
+  'Balkontuer zweiteilig': catalogImage('window-balkontuer-zweiteilig.png'),
+  'Parallel-Schiebe-Kipp': catalogImage('window-psk.png'),
+  'Hebe-Schiebetuer': catalogImage('window-hebeschiebe.png'),
+  Sondertyp: catalogImage('window-sondertyp.png')
 };
 
 export const OPTION_ICON_IMAGES = {

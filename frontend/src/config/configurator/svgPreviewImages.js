@@ -1,3 +1,4 @@
+import { WINDOW_DEFAULT_PREVIEW } from '@/config/configurator/configuratorImages';
 import { resolvePreviewColorId } from '@/config/configurator/decorColors';
 
 const svgModules = import.meta.glob('../../assets/svgs/**/*.svg', {
@@ -6,9 +7,8 @@ const svgModules = import.meta.glob('../../assets/svgs/**/*.svg', {
   import: 'default'
 });
 
-/** Neutral white single-sash window used as the base preview during material/profile selection. */
-export const DEFAULT_WINDOW_PREVIEW =
-  svgModules['../../assets/svgs/svgexport-16 (2).svg'] || null;
+/** Neutral front-view window used during material/profile selection. */
+export const DEFAULT_WINDOW_PREVIEW = WINDOW_DEFAULT_PREVIEW;
 
 const DECOR_ASSET_STEMS = {
   Weiss: 'Weiss',

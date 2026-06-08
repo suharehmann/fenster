@@ -54,6 +54,11 @@
   gap: 0;
   width: 100%;
   max-width: none;
+
+  &.is-starting-configuration {
+    pointer-events: none;
+    user-select: none;
+  }
 }
 
 .content-container:has(.detail-phase-page) {
@@ -869,12 +874,22 @@
 .fv-material-visual {
   display: grid;
   place-items: center;
-  min-height: 72px;
+  width: 100%;
+  min-height: 5.5rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  box-sizing: border-box;
 
   img {
+    display: block;
+    width: 100%;
     max-width: 100%;
-    max-height: 64px;
+    min-height: 4.5rem;
+    max-height: 5rem;
     object-fit: contain;
+    object-position: center;
   }
 }
 
@@ -1058,6 +1073,18 @@
       color: #fff;
     }
   }
+}
+
+.fv-preview-zoom-stage {
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  display: grid;
+  place-items: center;
+  transform: scale(var(--fv-preview-zoom, 1));
+  transform-origin: center center;
+  transition: transform 0.2s ease;
+  will-change: transform;
 }
 
 .fv-preview-canvas {

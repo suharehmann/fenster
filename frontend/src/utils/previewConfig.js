@@ -12,6 +12,7 @@ import {
   typeDefaultOpening
 } from './defaults';
 import {
+  DECOR_PREVIEW_IMAGES,
   MATERIAL_IMAGES,
   PRODUCT_IMAGES,
   WINDOW_TYPE_IMAGES
@@ -109,6 +110,12 @@ function resolveMaterialCatalogImage(material) {
     return MATERIAL_IMAGE_MANIFEST[material];
   }
   return null;
+}
+
+/** Photo preview for specific decor colours (e.g. Weiß) on the Farben step. */
+export function resolveDecorCatalogPreview(globalConfig, surface) {
+  const colorId = resolvePreviewColorId(globalConfig, surface);
+  return DECOR_PREVIEW_IMAGES[colorId] || null;
 }
 
 function resolveOpeningImage(windowConfig) {

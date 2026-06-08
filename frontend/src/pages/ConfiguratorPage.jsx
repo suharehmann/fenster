@@ -12,6 +12,7 @@ import DetailConfiguratorStudio, {
   WindowSecurityStep,
   IntroStepsLayout
 } from '@/components/configurator';
+import ConfiguratorStartLoader from '@/components/configurator/shared/ConfiguratorStartLoader';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { applyQuantity } from '@/lib/configurator/quantity';
 import {
@@ -526,7 +527,11 @@ export default function ConfiguratorPage() {
     }
 
     return (
-      <section className="page wizard-shell detail-phase-page">
+      <section
+        className={`page wizard-shell detail-phase-page${
+          isStartingConfiguration ? ' is-starting-configuration' : ''
+        }`}
+      >
         <DetailConfiguratorStudio
           state={state}
           setState={setState}
@@ -561,8 +566,18 @@ export default function ConfiguratorPage() {
   }
 
   if (isDetailPhase) {
-    return renderDetailPhase();
+    return (
+      <>
+        {isStartingConfiguration ? <ConfiguratorStartLoader /> : null}
+        {renderDetailPhase()}
+      </>
+    );
   }
 
-  return renderIntroPhase();
+  return (
+    <>
+      {isStartingConfiguration ? <ConfiguratorStartLoader /> : null}
+      {renderIntroPhase()}
+    </>
+  );
 }
