@@ -1127,6 +1127,32 @@
   gap: 1rem;
 }
 
+.studio-step-sections--stacked .section-block {
+  scroll-margin-top: 0.75rem;
+}
+
+.studio-decor-panel--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.studio-decor-surface-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-margin-top: 0.75rem;
+}
+
+.studio-decor-surface-title {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b645a;
+}
+
 .studio-embedded .section-block {
   border: 1px solid var(--line);
   border-radius: var(--studio-r);

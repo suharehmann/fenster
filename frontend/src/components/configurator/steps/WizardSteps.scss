@@ -1,5 +1,11 @@
 /* Wizard steps — loaded via ConfiguratorPage.scss */
 
+.studio-step-sections--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 .studio-step-sections .form-grid.compact {
   gap: var(--fv-space-md, 0.75rem);
 }

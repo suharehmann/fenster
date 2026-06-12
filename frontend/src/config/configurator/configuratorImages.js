@@ -26,12 +26,22 @@ export const DECOR_PREVIEW_IMAGES = {
   Weiss: catalogImage('weib.png')
 };
 
+/** Full-window flyout photos — intro wizard material step. */
 export const MATERIAL_IMAGES = {
-  Kunststoff: catalogImage('material-kunststoff.png'),
-  'Kunststoff-Aluminium': catalogImage('material-kunststoff-alu.png'),
-  Holz: catalogImage('material-holz.png'),
-  'Holz-Aluminium': catalogImage('material-holz-alu.png'),
-  Aluminium: catalogImage('material-aluminium.png'),
+  Kunststoff: configuratorImage('material-kunststoff.png'),
+  'Kunststoff-Aluminium': configuratorImage('material-kunststoff-alu.png'),
+  Holz: configuratorImage('material-holz.png'),
+  'Holz-Aluminium': configuratorImage('material-holz-alu.png'),
+  Aluminium: configuratorImage('material-aluminium.png'),
+};
+
+/** Profile cross-section photos — detail configurator material step only. */
+export const MATERIAL_PROFILE_IMAGES = {
+  Kunststoff: catalogImage('material-profile-kunststoff.png'),
+  'Kunststoff-Aluminium': catalogImage('material-profile-kunststoff-alu.png'),
+  Holz: catalogImage('material-profile-holz.png'),
+  'Holz-Aluminium': catalogImage('material-profile-holz-alu.png'),
+  Aluminium: catalogImage('material-profile-aluminium.png'),
 };
 
 /** Only types with dedicated artwork; others use generated SVG shapes in defaults.js */

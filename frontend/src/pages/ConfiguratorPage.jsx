@@ -13,7 +13,6 @@ import DetailConfiguratorStudio, {
   IntroStepsLayout
 } from '@/components/configurator';
 import ConfiguratorStartLoader from '@/components/configurator/shared/ConfiguratorStartLoader';
-import useMediaQuery from '@/hooks/useMediaQuery';
 import { applyQuantity } from '@/lib/configurator/quantity';
 import {
   getAvailableProfiles,
@@ -24,7 +23,6 @@ import {
 
 const STORAGE_KEY = 'fenster-konfigurator-v2';
 const ACTIVE_WINDOW_INDEX_KEY = 'fenster-konfigurator-active-window-index-v1';
-const MOBILE_MEDIA_QUERY = '(max-width: 768px)';
 const CUSTOMER_EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const INTRO_STEPS = [
@@ -48,12 +46,11 @@ const OTHER_DETAIL_STEPS = [
   { id: 'customer', label: 'Anfrage' }
 ];
 
-const SUB_STEPS = {
-  profile: ['Material', 'Profilsystem'],
-  colors: ['Farbe und Dekor aussen', 'Farbe und Dekor innen'],
-  build: ['Fenstertyp', 'Ober-/Unterlicht', 'Oeffnungsart', 'Groesse'],
-  glass: ['Glasart', 'Randverbund', 'Schallschutz', 'Sicherheitsglas', 'Ornamentglas'],
-  security: ['Sprossen', 'Beschlag & Luefter', 'Griff & Bohrungen', 'Rahmenverbreiterung']
+/** Last sub-step index per detail step — used for live preview when sections are stacked. */
+const PREVIEW_SUB_STEP = {
+  build: 3,
+  glass: 4,
+  security: 3
 };
 
 const STEP_KICKERS = {
@@ -83,28 +80,12 @@ function getIntroSteps(productType) {
   return INTRO_STEPS;
 }
 
-function getPartInfo(stepId, subStepIndex, isMobileViewport) {
-  if (stepId === 'profile' && !isMobileViewport) {
-    return { part: 1, total: 1 };
-  }
-
-  const subStepLabels = SUB_STEPS[stepId];
-  if (subStepLabels) {
-    return { part: subStepIndex + 1, total: subStepLabels.length };
-  }
-
+function getPartInfo() {
   return { part: 1, total: 1 };
 }
 
-function getSubStepTotal(detailStepId, isMobileViewport) {
-  if (detailStepId === 'profile' && !isMobileViewport) {
-    return 1;
-  }
-  return SUB_STEPS[detailStepId]?.length || 1;
-}
-
-function getColorSurface(subStepIndex) {
-  return subStepIndex === 0 ? 'outside' : 'inside';
+function getPreviewSubStep(detailStepId) {
+  return PREVIEW_SUB_STEP[detailStepId] ?? 0;
 }
 
 function isCustomerStepComplete(customer) {
@@ -115,13 +96,9 @@ function isCustomerStepComplete(customer) {
   );
 }
 
-function getGateMessage({ canProceed, stepId, isProfileSplitOnMobile, subStepIndex }) {
+function getGateMessage({ canProceed, stepId }) {
   if (canProceed) {
     return '';
-  }
-
-  if (isProfileSplitOnMobile && subStepIndex === 0) {
-    return GATE_MESSAGES.profileMaterial;
   }
 
   return GATE_MESSAGES[stepId] || '';
@@ -149,25 +126,51 @@ export default function ConfiguratorPage() {
   const [submitStatus, setSubmitStatus] = useState({ loading: false, error: '', success: false });
   const [isStartingConfiguration, setIsStartingConfiguration] = useState(false);
 
-  const isMobileViewport = useMediaQuery(MOBILE_MEDIA_QUERY);
-
   const introSteps = getIntroSteps(state.productType);
   const detailSteps = state.productType === 'window' ? WINDOW_DETAIL_STEPS : OTHER_DETAIL_STEPS;
   const currentStepId = introSteps[currentStep]?.id;
   const detailStepId = detailSteps[detailStep]?.id;
-  const isProfileStepSplitOnMobile = detailStepId === 'profile' && isMobileViewport;
-  const subStepTotal = getSubStepTotal(detailStepId, isMobileViewport);
-  const colorSurface = getColorSurface(subStep);
+  const previewSubStep = getPreviewSubStep(detailStepId);
   const isDetailPhase = phase === 'detail';
   const activeStepId = isDetailPhase ? detailStepId : currentStepId;
-  const canProceed = isDetailPhase
-    ? canProceedFromDetail(detailStepId)
-    : canProceedFromIntro(currentStepId);
+
+  function canProceedFromIntro(stepId) {
+    if (stepId === 'product') {
+      return Boolean(state.productType);
+    }
+    if (stepId === 'quantity') {
+      return Boolean(state.productType) && state.quantity > 0;
+    }
+    if (stepId === 'material') {
+      return Boolean(state.globalConfig?.material);
+    }
+    if (stepId === 'manufacturer') {
+      const material = state.globalConfig?.material;
+      if (!materialHasSystem(material)) {
+        return true;
+      }
+      return Boolean(state.globalConfig?.manufacturer);
+    }
+    return false;
+  }
+
+  function canProceedFromDetail(stepId) {
+    if (stepId === 'profile') {
+      return Boolean(state.globalConfig?.material) && Boolean(state.globalConfig?.profileSystem);
+    }
+
+    if (stepId === 'customer') {
+      return isCustomerStepComplete(state.customer);
+    }
+
+    return true;
+  }
+
   const gateMessage = getGateMessage({
-    canProceed,
-    stepId: activeStepId,
-    isProfileSplitOnMobile: isProfileStepSplitOnMobile,
-    subStepIndex: subStep
+    canProceed: isDetailPhase
+      ? canProceedFromDetail(detailStepId)
+      : canProceedFromIntro(currentStepId),
+    stepId: activeStepId
   });
 
   useEffect(() => {
@@ -183,12 +186,6 @@ export default function ConfiguratorPage() {
   }, [detailSteps.length]);
 
   useEffect(() => {
-    if (detailStepId === 'colors') {
-      setPreviewSurface(colorSurface);
-    }
-  }, [detailStepId, colorSurface]);
-
-  useEffect(() => {
     const maxIndex =
       state.productType === 'window'
         ? Math.max(0, state.windows.length - 1)
@@ -199,17 +196,6 @@ export default function ConfiguratorPage() {
   useEffect(() => {
     localStorage.setItem(ACTIVE_WINDOW_INDEX_KEY, String(activeWindowIndex));
   }, [activeWindowIndex]);
-
-  useEffect(() => {
-    if (!isProfileStepSplitOnMobile || phase !== 'detail' || subStep !== 1) {
-      return;
-    }
-
-    const scrollTarget = document.getElementById('fv-profile-step');
-    requestAnimationFrame(() => {
-      scrollTarget?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }, [isProfileStepSplitOnMobile, phase, subStep]);
 
   function updateGlobalConfig(key, value) {
     setState((previousState) => ({
@@ -257,51 +243,11 @@ export default function ConfiguratorPage() {
     setState((previousState) => applyQuantity(previousState, quantity, { fillAllSlots: true }));
   }
 
-  function canProceedFromIntro(stepId) {
-    if (stepId === 'product') {
-      return Boolean(state.productType);
-    }
-    if (stepId === 'quantity') {
-      return Boolean(state.productType) && state.quantity > 0;
-    }
-    if (stepId === 'material') {
-      return Boolean(state.globalConfig?.material);
-    }
-    if (stepId === 'manufacturer') {
-      const material = state.globalConfig?.material;
-      if (!materialHasSystem(material)) {
-        return true;
-      }
-      return Boolean(state.globalConfig?.manufacturer);
-    }
-    return false;
-  }
-
-  function canProceedFromDetail(stepId, partIndex = subStep) {
-    if (stepId === 'profile') {
-      const hasMaterial = Boolean(state.globalConfig?.material);
-      const hasProfile = Boolean(state.globalConfig?.profileSystem);
-
-      if (!isMobileViewport) {
-        return hasMaterial && hasProfile;
-      }
-      if (partIndex === 0) {
-        return hasMaterial;
-      }
-      return hasProfile;
-    }
-
-    if (stepId === 'customer') {
-      return isCustomerStepComplete(state.customer);
-    }
-
-    return true;
-  }
-
   function startDetailConfiguration() {
     setState((previousState) => applyQuantity(previousState, previousState.quantity, { fillAllSlots: true }));
     setPhase('detail');
     setDetailStep(0);
+    setSubStep(0);
     setSubmitStatus({ loading: false, error: '', success: false });
   }
 
@@ -348,10 +294,6 @@ export default function ConfiguratorPage() {
   }
 
   function handleDetailBack() {
-    if (subStep > 0) {
-      setSubStep((previousSubStep) => previousSubStep - 1);
-      return;
-    }
     if (detailStep === 0) {
       setPhase('intro');
       return;
@@ -360,16 +302,12 @@ export default function ConfiguratorPage() {
     setSubStep(0);
   }
 
-  function handleDetailStepChange(stepIndex, nextSubStep = 0) {
+  function handleDetailStepChange(stepIndex) {
     setDetailStep(stepIndex);
-    setSubStep(nextSubStep);
+    setSubStep(0);
   }
 
   function handleDetailContinue() {
-    if (subStep < subStepTotal - 1) {
-      setSubStep((previousSubStep) => previousSubStep + 1);
-      return;
-    }
     if (detailStep < detailSteps.length - 1) {
       setDetailStep((previousStep) => previousStep + 1);
       setSubStep(0);
@@ -385,7 +323,6 @@ export default function ConfiguratorPage() {
   }
 
   function handleColorSurfaceChange(surface) {
-    setSubStep(surface === 'outside' ? 0 : 1);
     setPreviewSurface(surface);
   }
 
@@ -394,36 +331,20 @@ export default function ConfiguratorPage() {
   }
 
   function renderProfileStepContent() {
-    if (!isMobileViewport) {
-      return (
-        <>
+    return (
+      <>
+        <div id="fv-profile-material">
           <MaterialSelectionStudio
             selected={state.globalConfig.material}
             onSelect={handleMaterialChange}
           />
-          {state.globalConfig.material && (
-            <div className="fv-profile-block">
-              <ProfileSelectionStudio state={state} setState={setState} />
-            </div>
-          )}
-        </>
-      );
-    }
-
-    if (subStep === 0) {
-      return (
-        <MaterialSelectionStudio
-          selected={state.globalConfig.material}
-          onSelect={handleMaterialChange}
-          showNextHint
-        />
-      );
-    }
-
-    return (
-      <div className="fv-profile-block fv-profile-block--step" id="fv-profile-step">
-        <ProfileSelectionStudio state={state} setState={setState} />
-      </div>
+        </div>
+        {state.globalConfig.material && (
+          <div className="fv-profile-block" id="fv-profile-system">
+            <ProfileSelectionStudio state={state} setState={setState} />
+          </div>
+        )}
+      </>
     );
   }
 
@@ -438,22 +359,19 @@ export default function ConfiguratorPage() {
           state={state}
           setState={setState}
           activeWindowIndex={activeWindowIndex}
-          subStep={subStep}
           previewSurface={previewSurface}
         />
       );
     }
 
     if (detailStepId === 'colors') {
-      const colorConfigKey =
-        colorSurface === 'outside' ? 'frameColorOutside' : 'frameColorInside';
-
       return (
         <ColorSelectionStudio
-          surface={colorSurface}
-          selected={state.globalConfig[colorConfigKey]}
+          stacked
+          surface={previewSurface}
+          selected={state.globalConfig.frameColorOutside}
           onSurfaceChange={handleColorSurfaceChange}
-          onSelect={(value) => handleDecorColorSelect(colorConfigKey, value)}
+          onSelect={(value) => handleDecorColorSelect('frameColorOutside', value)}
           onConfigChange={updateGlobalConfig}
           windowConfig={state.windows[activeWindowIndex] || state.windows[0]}
           globalConfig={state.globalConfig}
@@ -467,7 +385,6 @@ export default function ConfiguratorPage() {
           state={state}
           setState={setState}
           activeWindowIndex={activeWindowIndex}
-          subStep={subStep}
         />
       );
     }
@@ -478,7 +395,6 @@ export default function ConfiguratorPage() {
           state={state}
           setState={setState}
           activeWindowIndex={activeWindowIndex}
-          subStep={subStep}
         />
       );
     }
@@ -515,7 +431,7 @@ export default function ConfiguratorPage() {
   }
 
   function renderDetailPhase() {
-    const partInfo = getPartInfo(detailStepId, subStep, isMobileViewport);
+    const partInfo = getPartInfo();
     const isLastStep =
       detailStep === detailSteps.length - 1 && partInfo.part === partInfo.total;
 
@@ -553,10 +469,10 @@ export default function ConfiguratorPage() {
           onStepChange={handleDetailStepChange}
           onExitToIntro={handleExitToIntro}
           submitStatus={submitStatus}
-          colorSurface={colorSurface}
-          onColorSurfaceChange={(surface) => setSubStep(surface === 'outside' ? 0 : 1)}
+          colorSurface={previewSurface}
+          onColorSurfaceChange={handleColorSurfaceChange}
           detailStepId={detailStepId}
-          subStep={subStep}
+          subStep={previewSubStep}
         >
           {renderDetailContent()}
           {gateMessage && <p className="error">{gateMessage}</p>}

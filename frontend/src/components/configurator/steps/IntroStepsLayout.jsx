@@ -1,6 +1,7 @@
 import { CheckOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import OptionCard from '../options/OptionCard';
+import SelectedMark from '@/components/ui/SelectedMark';
 import { QUANTITY_PRESETS } from '@/lib/configurator/quantity';
 import {
   getAvailableSystems,
@@ -184,7 +185,12 @@ function CardGrid({ variant, options, selected, onSelect }) {
             onSelect={onSelect}
             className={`${variant}-card intro-selection-card`}
           >
-            <IntroCardContent variant={variant} option={option} label={optionLabel} />
+            <IntroCardContent
+              variant={variant}
+              option={option}
+              label={optionLabel}
+              selected={optionId === selected}
+            />
           </OptionCard>
         );
       })}
@@ -192,14 +198,17 @@ function CardGrid({ variant, options, selected, onSelect }) {
   );
 }
 
-function IntroCardContent({ variant, option, label }) {
+function IntroCardContent({ variant, option, label, selected = false }) {
   if (variant === 'product') {
     const description = PRODUCT_DESCRIPTIONS[option.id] ?? '';
 
     return (
       <>
+        <SelectedMark selected={selected} />
         <div className="intro-selection-card-media product-card-media">
-          {option.image ? <img src={option.image} alt={label} loading="lazy" /> : null}
+          {option.image ? (
+            <img src={option.image} alt={label} loading="lazy" decoding="async" />
+          ) : null}
         </div>
         <div className="intro-selection-card-copy product-card-copy">
           <h3 className="intro-selection-card-title product-card-title">{label}</h3>
@@ -212,8 +221,11 @@ function IntroCardContent({ variant, option, label }) {
   if (variant === 'material') {
     return (
       <>
+        <SelectedMark selected={selected} />
         <div className="intro-selection-card-media material-card-media">
-          {option.image ? <img src={option.image} alt={label} loading="lazy" /> : null}
+          {option.image ? (
+            <img src={option.image} alt={label} loading="lazy" decoding="async" />
+          ) : null}
         </div>
         <div className="intro-selection-card-copy material-card-copy">
           <h3 className="intro-selection-card-title material-card-title">{label}</h3>
@@ -230,6 +242,7 @@ function IntroCardContent({ variant, option, label }) {
 
   return (
     <>
+      <SelectedMark selected={selected} />
       <div className="intro-selection-card-media manufacturer-card-media">
         <div className="manufacturer-logo">
           {option.image ? (

@@ -14,8 +14,6 @@ import {
 import SelectedMark from '@/components/ui/SelectedMark';
 import ConfigSection from '../shared/ConfigSection';
 
-const HYBRID_MATERIALS = ['Kunststoff-Aluminium', 'Holz-Aluminium'];
-
 /** CSS-only swatch: solid colour or a light texture hint for decors / wood / metallic. */
 function swatchStyle(option) {
   const color = option.color || '#e2e8f0';
@@ -143,14 +141,77 @@ function getColorSections(material, isOutside) {
   }
 }
 
+function DecorSurfaceSections({ surface, globalConfig, onConfigChange, onSelect }) {
+  const isOutside = surface === 'outside';
+  const material = globalConfig?.material;
+  const sections = getColorSections(material, isOutside);
+  const colorKey = isOutside ? 'frameColorOutside' : 'frameColorInside';
+  const selected = globalConfig?.[colorKey];
+
+  return (
+    <div
+      className="studio-decor-surface-block"
+      id={isOutside ? 'fv-colors-outside' : 'fv-colors-inside'}
+    >
+      <h3 className="studio-decor-surface-title">{isOutside ? 'Farbe und Dekor aussen' : 'Farbe und Dekor innen'}</h3>
+      <div className="studio-decor-sections">
+        {sections.map((section) => {
+          const isSpecies = section.kind === 'species';
+          const sectionSelected = isSpecies ? globalConfig?.woodSpecies : selected;
+          const handleSelect = isSpecies
+            ? (id) => onConfigChange?.('woodSpecies', id)
+            : (id) => {
+                onConfigChange?.(colorKey, id);
+                onSelect?.(id);
+              };
+          return (
+            <ConfigSection title={section.title} key={`${surface}-${section.title}`}>
+              {section.lead && <p className="studio-decor-lead">{section.lead}</p>}
+              {section.groups.map((group, idx) => (
+                <DecorGroup
+                  key={`${section.title}-${group.heading || idx}`}
+                  heading={group.heading}
+                  options={group.options}
+                  selected={sectionSelected}
+                  onSelect={handleSelect}
+                />
+              ))}
+            </ConfigSection>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function DecorColorStudio({
   surface,
   selected,
   onSelect,
   onSurfaceChange,
   onConfigChange,
-  globalConfig
+  globalConfig,
+  stacked = true
 }) {
+  if (stacked) {
+    return (
+      <div className="studio-color-panel studio-decor-panel studio-decor-panel--stacked">
+        <DecorSurfaceSections
+          surface="outside"
+          globalConfig={globalConfig}
+          onConfigChange={onConfigChange}
+          onSelect={onSelect}
+        />
+        <DecorSurfaceSections
+          surface="inside"
+          globalConfig={globalConfig}
+          onConfigChange={onConfigChange}
+          onSelect={onSelect}
+        />
+      </div>
+    );
+  }
+
   const isOutside = surface === 'outside';
   const material = globalConfig?.material;
   const sections = getColorSections(material, isOutside);

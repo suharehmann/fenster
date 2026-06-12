@@ -75,11 +75,15 @@ function NumberField({ label, value, onChange, min = 0, max = 9999, step = 1 }) 
   );
 }
 
-function StudioSections({ panels, subStep }) {
-  return <div className="studio-step-sections">{panels[subStep]}</div>;
+function StudioSections({ panels }) {
+  return (
+    <div className="studio-step-sections studio-step-sections--stacked">
+      {panels.map((panel) => panel)}
+    </div>
+  );
 }
 
-export function WindowBuildStep({ state, setState, activeWindowIndex, subStep, previewSurface = 'outside' }) {
+export function WindowBuildStep({ state, setState, activeWindowIndex, previewSurface = 'outside' }) {
   if (state.productType !== 'window') return null;
   const [measureModalOpen, setMeasureModalOpen] = useState(false);
 
@@ -146,17 +150,17 @@ export function WindowBuildStep({ state, setState, activeWindowIndex, subStep, p
   }
 
   const panels = [
-    <ConfigSection title="FENSTERTYP" key="type">
+    <ConfigSection title="FENSTERTYP" sectionId="fv-build-type" key="type">
       <OptionGrid options={windowTypeOptions} selected={win.windowType} onSelect={changeWindowType} />
     </ConfigSection>,
-    <ConfigSection title="OBER-/UNTERLICHT" key="light">
+    <ConfigSection title="OBER-/UNTERLICHT" sectionId="fv-build-light" key="light">
       <OptionGrid
         options={lightOptions}
         selected={win.lightOption}
         onSelect={(v) => setWin('lightOption', v)}
       />
     </ConfigSection>,
-    <ConfigSection title="OEFFNUNG" key="opening">
+    <ConfigSection title="OEFFNUNG" sectionId="fv-build-opening" key="opening">
       <h3>Oeffnungsart</h3>
       <OptionGrid
         options={openingOptions}
@@ -187,7 +191,7 @@ export function WindowBuildStep({ state, setState, activeWindowIndex, subStep, p
         columns={4}
       />
     </ConfigSection>,
-    <ConfigSection title="GROESSE" key="size">
+    <ConfigSection title="GROESSE" sectionId="fv-build-size" key="size">
       <div className="form-grid compact">
         <NumberField label="Gesamtbreite (mm)" value={win.width} min={SIZE_LIMITS.width.min} max={SIZE_LIMITS.width.max} onChange={(v) => setWin('width', v)} />
         <NumberField label="Gesamthoehe (mm)" value={win.height} min={SIZE_LIMITS.height.min} max={SIZE_LIMITS.height.max} onChange={(v) => setWin('height', v)} />
@@ -229,10 +233,10 @@ export function WindowBuildStep({ state, setState, activeWindowIndex, subStep, p
     </ConfigSection>
   ];
 
-  return <StudioSections panels={panels} subStep={subStep} />;
+  return <StudioSections panels={panels} />;
 }
 
-export function WindowGlassStep({ state, setState, activeWindowIndex, subStep }) {
+export function WindowGlassStep({ state, setState, activeWindowIndex }) {
   if (state.productType !== 'window') return null;
 
   const win = state.windows[activeWindowIndex] || state.windows[0];
@@ -277,10 +281,10 @@ export function WindowGlassStep({ state, setState, activeWindowIndex, subStep })
     </ConfigSection>
   ];
 
-  return <StudioSections panels={panels} subStep={subStep} />;
+  return <StudioSections panels={panels} />;
 }
 
-export function WindowSecurityStep({ state, setState, activeWindowIndex, subStep }) {
+export function WindowSecurityStep({ state, setState, activeWindowIndex }) {
   if (state.productType !== 'window') return null;
 
   const win = state.windows[activeWindowIndex] || state.windows[0];
@@ -338,7 +342,7 @@ export function WindowSecurityStep({ state, setState, activeWindowIndex, subStep
     </ConfigSection>
   ];
 
-  return <StudioSections panels={panels} subStep={subStep} />;
+  return <StudioSections panels={panels} />;
 }
 
 export { default as NonWindowProductStep } from './NonWindowProductStep';

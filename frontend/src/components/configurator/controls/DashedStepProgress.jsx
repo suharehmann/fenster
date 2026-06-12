@@ -1,15 +1,18 @@
 export default function DashedStepProgress({
   steps,
   activeIndex,
+  maxClickableIndex = activeIndex,
   onSelect,
   ariaLabel = 'Konfigurationsfortschritt'
 }) {
+  const clickableLimit = Math.max(activeIndex, maxClickableIndex);
+
   return (
     <ol className="fv-dashed-progress" aria-label={ariaLabel}>
       {steps.map((step, index) => {
         const isActive = index === activeIndex;
         const isDone = index < activeIndex;
-        const isClickable = typeof onSelect === 'function' && index <= activeIndex;
+        const isClickable = typeof onSelect === 'function' && index <= clickableLimit;
         const stateClass = isActive ? 'is-active' : isDone ? 'is-done' : 'is-upcoming';
         const label = step.title ?? step.label ?? `Schritt ${index + 1}`;
 

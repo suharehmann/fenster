@@ -1,5 +1,6 @@
 import './MaterialSelectionStudio.scss';
 import SelectedMark from '@/components/ui/SelectedMark';
+import { MATERIAL_PROFILE_IMAGES } from '@/config/configurator/configuratorImages';
 import { WINDOW_MATERIALS } from '@/utils/defaults';
 
 const MATERIAL_HINTS = {
@@ -29,8 +30,8 @@ export default function MaterialSelectionStudio({ selected, onSelect, showNextHi
             >
               <SelectedMark selected={isSelected} />
               <span className="fv-material-visual">
-                {option.image ? (
-                  <img src={option.image} alt="" loading="lazy" />
+                {MATERIAL_PROFILE_IMAGES[option.id] ? (
+                  <img src={MATERIAL_PROFILE_IMAGES[option.id]} alt="" loading="lazy" decoding="async" />
                 ) : (
                   <span className="fv-material-fallback" />
                 )}

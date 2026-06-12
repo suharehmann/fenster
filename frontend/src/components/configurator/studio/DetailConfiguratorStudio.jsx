@@ -67,35 +67,54 @@ const PREVIEW_ZOOM_STEP = 0.2;
 const STEPPER_STEPS = [
   { num: '1', title: 'Material' },
   { num: '2', title: 'Farben' },
-  { num: '3', title: 'Typ' },
-  { num: '4', title: 'Öffnung' },
-  { num: '5', title: 'Maße' },
-  { num: '6', title: 'Verglasung' },
-  { num: '7', title: 'Extras' }
+  { num: '3', title: 'Fensteraufbau' },
+  { num: '4', title: 'Verglasung' },
+  { num: '5', title: 'Extras' }
 ];
 
 const STEPPER_JUMP = [
-  { stepId: 'profile', subStep: 0 },
-  { stepId: 'colors', subStep: 0 },
-  { stepId: 'build', subStep: 0 },
-  { stepId: 'build', subStep: 2 },
-  { stepId: 'build', subStep: 3 },
-  { stepId: 'glass', subStep: 0 },
-  { stepId: 'security', subStep: 0 }
+  { stepId: 'profile' },
+  { stepId: 'colors' },
+  { stepId: 'build', scrollTo: 'fv-build-type' },
+  { stepId: 'glass' },
+  { stepId: 'security' }
 ];
 
-function getStepperDisplayIndex(detailStepId, subStep) {
-  if (detailStepId === 'profile') return 0;
-  if (detailStepId === 'colors') return 1;
-  if (detailStepId === 'build') {
-    if (subStep <= 1) return 2;
-    if (subStep === 2) return 3;
-    return 4;
-  }
-  if (detailStepId === 'glass') return 5;
-  if (detailStepId === 'security') return 6;
-  if (detailStepId === 'customer') return 6;
-  return 0;
+/** Highlighted stepper item for each detail phase. */
+const STEPPER_ACTIVE_INDEX = {
+  profile: 0,
+  colors: 1,
+  build: 2,
+  glass: 3,
+  security: 4,
+  customer: 4,
+  'product-config': 0
+};
+
+/** Furthest stepper item the user may jump to within the current phase. */
+const STEPPER_MAX_CLICKABLE_INDEX = {
+  profile: 0,
+  colors: 1,
+  build: 2,
+  glass: 3,
+  security: 4,
+  customer: 4,
+  'product-config': 0
+};
+
+function getStepperActiveIndex(detailStepId) {
+  return STEPPER_ACTIVE_INDEX[detailStepId] ?? 0;
+}
+
+function getStepperMaxClickableIndex(detailStepId) {
+  return STEPPER_MAX_CLICKABLE_INDEX[detailStepId] ?? 0;
+}
+
+function scrollToConfiguratorSection(sectionId) {
+  if (!sectionId) return;
+  requestAnimationFrame(() => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 function formatMm(value, fallback) {
@@ -739,11 +758,19 @@ export default function DetailConfiguratorStudio({
   const nameModalOpen = nameModalIndex !== null;
   const nameModalWindow =
     nameModalIndex !== null ? state.windows[nameModalIndex] : null;
-  const stepperActiveIndex = getStepperDisplayIndex(detailStepId, subStep);
+  const stepperActiveIndex = getStepperActiveIndex(detailStepId);
+  const stepperMaxClickableIndex = getStepperMaxClickableIndex(detailStepId);
   const mobileStepperSteps = isWindow ? STEPPER_STEPS : PRODUCT_STEPS;
   const mobileStepperIndex = isWindow ? stepperActiveIndex : productStepperIndex;
   const mobileActiveStep = mobileStepperSteps[mobileStepperIndex] ?? mobileStepperSteps[0];
   const useMobileConfigDropdown = isMobileViewport && !isInquiryStep;
+
+  useEffect(() => {
+    const stepBody = document.querySelector('.detail-phase-page .fv-step-body');
+    if (stepBody) {
+      stepBody.scrollTop = 0;
+    }
+  }, [detailStepId]);
 
   function handleMobileStepSelect(displayIndex) {
     if (isWindow) {
@@ -796,7 +823,18 @@ export default function DetailConfiguratorStudio({
     if (!jump) return;
     const stepIndex = detailSteps.findIndex((s) => s.id === jump.stepId);
     if (stepIndex < 0) return;
-    onStepChange(stepIndex, jump.subStep);
+
+    if (stepIndex !== detailStep) {
+      onStepChange(stepIndex);
+      if (jump.scrollTo) {
+        setTimeout(() => scrollToConfiguratorSection(jump.scrollTo), 120);
+      }
+      return;
+    }
+
+    if (jump.scrollTo) {
+      scrollToConfiguratorSection(jump.scrollTo);
+    }
   }
 
   const previewKey = [
@@ -865,6 +903,7 @@ export default function DetailConfiguratorStudio({
               stepTitle={mobileActiveStep.title}
               steps={mobileStepperSteps}
               activeIndex={mobileStepperIndex}
+              maxClickableIndex={isWindow ? stepperMaxClickableIndex : mobileStepperIndex}
               onStepSelect={handleMobileStepSelect}
             >
               {!isInquiryStep && stepPartTotal > 1 ? (
@@ -905,6 +944,7 @@ export default function DetailConfiguratorStudio({
                 <ConfigStepper
                   steps={STEPPER_STEPS}
                   activeIndex={stepperActiveIndex}
+                  maxClickableIndex={stepperMaxClickableIndex}
                   onSelect={handleStepperSelect}
                   getKey={(item) => item.num}
                   getNum={(item) => item.num}

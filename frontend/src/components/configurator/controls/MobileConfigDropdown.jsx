@@ -9,6 +9,7 @@ export default function MobileConfigDropdown({
   stepTitle,
   steps,
   activeIndex,
+  maxClickableIndex = activeIndex,
   onStepSelect,
   children
 }) {
@@ -52,7 +53,11 @@ export default function MobileConfigDropdown({
             {stepKicker ? <span className="fv-mobile-config-dropdown__kicker">{stepKicker}</span> : null}
             <span className="fv-mobile-config-dropdown__step-title">{stepTitle}</span>
           </span>
-          <DashedStepProgress steps={steps} activeIndex={activeIndex} />
+          <DashedStepProgress
+            steps={steps}
+            activeIndex={activeIndex}
+            maxClickableIndex={maxClickableIndex}
+          />
         </span>
         <DropdownChevron isOpen={isOpen} className="fv-mobile-config-dropdown__chevron" />
       </button>
@@ -69,7 +74,12 @@ export default function MobileConfigDropdown({
               {stepKicker ? <span>{stepKicker}</span> : null}
               <strong>{stepTitle}</strong>
             </div>
-            <DashedStepProgress steps={steps} activeIndex={activeIndex} onSelect={onStepSelect} />
+            <DashedStepProgress
+              steps={steps}
+              activeIndex={activeIndex}
+              maxClickableIndex={maxClickableIndex}
+              onSelect={onStepSelect}
+            />
           </div>
 
           <div className="fv-mobile-config-dropdown__content">{children}</div>
